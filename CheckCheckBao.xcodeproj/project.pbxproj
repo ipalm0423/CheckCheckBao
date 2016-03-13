@@ -1,0 +1,505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AC1C2CD91C9529DC00DE05E1 /* ImagePriceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1C2CD81C9529DC00DE05E1 /* ImagePriceCollectionViewCell.m */; };
+		AC1C2CDF1C952A4100DE05E1 /* SummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1C2CDE1C952A4100DE05E1 /* SummaryViewController.m */; };
+		AC1C2CE21C952ADA00DE05E1 /* ImageHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1C2CE11C952ADA00DE05E1 /* ImageHeaderCollectionReusableView.m */; };
+		AC1C2CE61C952EC900DE05E1 /* BaoImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1C2CE51C952EC900DE05E1 /* BaoImage.m */; };
+		AC1C2CE91C952EED00DE05E1 /* BaoController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1C2CE81C952EED00DE05E1 /* BaoController.m */; };
+		AC1C2CEC1C9534B900DE05E1 /* BaoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1C2CEB1C9534B900DE05E1 /* BaoAlbum.m */; };
+		AC4314971C8ACA3800C2D391 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4314961C8ACA3800C2D391 /* main.m */; };
+		AC43149A1C8ACA3800C2D391 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4314991C8ACA3800C2D391 /* AppDelegate.m */; };
+		AC43149D1C8ACA3800C2D391 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC43149C1C8ACA3800C2D391 /* ViewController.m */; };
+		AC4314A01C8ACA3900C2D391 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC43149E1C8ACA3900C2D391 /* Main.storyboard */; };
+		AC4314A31C8ACA3900C2D391 /* CheckCheckBao.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AC4314A11C8ACA3900C2D391 /* CheckCheckBao.xcdatamodeld */; };
+		AC4314A51C8ACA3A00C2D391 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC4314A41C8ACA3A00C2D391 /* Assets.xcassets */; };
+		AC4314A81C8ACA3A00C2D391 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC4314A61C8ACA3A00C2D391 /* LaunchScreen.storyboard */; };
+		AC4314B51C8ACBD600C2D391 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314AF1C8ACBD600C2D391 /* Bolts.framework */; };
+		AC4314B61C8ACBD600C2D391 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314B01C8ACBD600C2D391 /* Parse.framework */; };
+		AC4314B71C8ACBD600C2D391 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314B11C8ACBD600C2D391 /* ParseFacebookUtils.framework */; };
+		AC4314B81C8ACBD600C2D391 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314B21C8ACBD600C2D391 /* ParseFacebookUtilsV4.framework */; };
+		AC4314B91C8ACBD600C2D391 /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314B31C8ACBD600C2D391 /* ParseTwitterUtils.framework */; };
+		AC4314BA1C8ACBD600C2D391 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314B41C8ACBD600C2D391 /* ParseUI.framework */; };
+		AC4314BE1C8ACCE800C2D391 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314BD1C8ACCE800C2D391 /* Accounts.framework */; };
+		AC4314C01C8ACCF400C2D391 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314BF1C8ACCF400C2D391 /* AudioToolbox.framework */; };
+		AC4314C21C8ACCFD00C2D391 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314C11C8ACCFD00C2D391 /* CFNetwork.framework */; };
+		AC4314C41C8ACD0500C2D391 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314C31C8ACD0500C2D391 /* CoreGraphics.framework */; };
+		AC4314C61C8ACD0F00C2D391 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314C51C8ACD0F00C2D391 /* CoreLocation.framework */; };
+		AC4314C81C8ACD1800C2D391 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314C71C8ACD1800C2D391 /* QuartzCore.framework */; };
+		AC4314CA1C8ACD2300C2D391 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314C91C8ACD2300C2D391 /* Security.framework */; };
+		AC4314CC1C8ACD2C00C2D391 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314CB1C8ACD2C00C2D391 /* Social.framework */; };
+		AC4314CE1C8ACD3400C2D391 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314CD1C8ACD3400C2D391 /* StoreKit.framework */; };
+		AC4314D01C8ACD3E00C2D391 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314CF1C8ACD3E00C2D391 /* SystemConfiguration.framework */; };
+		AC4314D21C8ACD4700C2D391 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314D11C8ACD4700C2D391 /* libz.tbd */; };
+		AC4314D41C8ACD5C00C2D391 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4314D31C8ACD5C00C2D391 /* libsqlite3.tbd */; };
+		AC4314D81C8AD29300C2D391 /* CameraOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4314D71C8AD29300C2D391 /* CameraOverlayViewController.m */; };
+		AC4314DE1C8B1FAE00C2D391 /* CameraPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4314DD1C8B1FAE00C2D391 /* CameraPreviewViewController.m */; };
+		AC4314E21C8B23D600C2D391 /* CaptureSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4314E11C8B23D600C2D391 /* CaptureSessionManager.m */; };
+		AC4314E51C8B2D2200C2D391 /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4314E41C8B2D2200C2D391 /* CalculatorViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AC1C2CD71C9529DC00DE05E1 /* ImagePriceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePriceCollectionViewCell.h; sourceTree = "<group>"; };
+		AC1C2CD81C9529DC00DE05E1 /* ImagePriceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePriceCollectionViewCell.m; sourceTree = "<group>"; };
+		AC1C2CDD1C952A4100DE05E1 /* SummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryViewController.h; sourceTree = "<group>"; };
+		AC1C2CDE1C952A4100DE05E1 /* SummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryViewController.m; sourceTree = "<group>"; };
+		AC1C2CE01C952ADA00DE05E1 /* ImageHeaderCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageHeaderCollectionReusableView.h; sourceTree = "<group>"; };
+		AC1C2CE11C952ADA00DE05E1 /* ImageHeaderCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageHeaderCollectionReusableView.m; sourceTree = "<group>"; };
+		AC1C2CE41C952EC900DE05E1 /* BaoImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaoImage.h; sourceTree = "<group>"; };
+		AC1C2CE51C952EC900DE05E1 /* BaoImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaoImage.m; sourceTree = "<group>"; };
+		AC1C2CE71C952EED00DE05E1 /* BaoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaoController.h; path = "image API/BaoController.h"; sourceTree = "<group>"; };
+		AC1C2CE81C952EED00DE05E1 /* BaoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaoController.m; path = "image API/BaoController.m"; sourceTree = "<group>"; };
+		AC1C2CEA1C9534B900DE05E1 /* BaoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaoAlbum.h; sourceTree = "<group>"; };
+		AC1C2CEB1C9534B900DE05E1 /* BaoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaoAlbum.m; sourceTree = "<group>"; };
+		AC4314921C8ACA3700C2D391 /* CheckCheckBao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheckCheckBao.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC4314961C8ACA3800C2D391 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AC4314981C8ACA3800C2D391 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		AC4314991C8ACA3800C2D391 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		AC43149B1C8ACA3800C2D391 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		AC43149C1C8ACA3800C2D391 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		AC43149F1C8ACA3900C2D391 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AC4314A21C8ACA3900C2D391 /* CheckCheckBao.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CheckCheckBao.xcdatamodel; sourceTree = "<group>"; };
+		AC4314A41C8ACA3A00C2D391 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AC4314A71C8ACA3A00C2D391 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AC4314A91C8ACA3A00C2D391 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC4314AF1C8ACBD600C2D391 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = CheckCheckBao/Bolts.framework; sourceTree = "<group>"; };
+		AC4314B01C8ACBD600C2D391 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = CheckCheckBao/Parse.framework; sourceTree = "<group>"; };
+		AC4314B11C8ACBD600C2D391 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = CheckCheckBao/ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		AC4314B21C8ACBD600C2D391 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = CheckCheckBao/ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		AC4314B31C8ACBD600C2D391 /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseTwitterUtils.framework; path = CheckCheckBao/ParseTwitterUtils.framework; sourceTree = "<group>"; };
+		AC4314B41C8ACBD600C2D391 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = CheckCheckBao/ParseUI.framework; sourceTree = "<group>"; };
+		AC4314BD1C8ACCE800C2D391 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		AC4314BF1C8ACCF400C2D391 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		AC4314C11C8ACCFD00C2D391 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		AC4314C31C8ACD0500C2D391 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AC4314C51C8ACD0F00C2D391 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		AC4314C71C8ACD1800C2D391 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AC4314C91C8ACD2300C2D391 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		AC4314CB1C8ACD2C00C2D391 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		AC4314CD1C8ACD3400C2D391 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		AC4314CF1C8ACD3E00C2D391 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AC4314D11C8ACD4700C2D391 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		AC4314D31C8ACD5C00C2D391 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		AC4314D61C8AD29300C2D391 /* CameraOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraOverlayViewController.h; sourceTree = "<group>"; };
+		AC4314D71C8AD29300C2D391 /* CameraOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraOverlayViewController.m; sourceTree = "<group>"; };
+		AC4314DC1C8B1FAE00C2D391 /* CameraPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPreviewViewController.h; sourceTree = "<group>"; };
+		AC4314DD1C8B1FAE00C2D391 /* CameraPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPreviewViewController.m; sourceTree = "<group>"; };
+		AC4314E01C8B23D600C2D391 /* CaptureSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureSessionManager.h; sourceTree = "<group>"; };
+		AC4314E11C8B23D600C2D391 /* CaptureSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureSessionManager.m; sourceTree = "<group>"; };
+		AC4314E31C8B2D2200C2D391 /* CalculatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorViewController.h; sourceTree = "<group>"; };
+		AC4314E41C8B2D2200C2D391 /* CalculatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AC43148F1C8ACA3700C2D391 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC4314D41C8ACD5C00C2D391 /* libsqlite3.tbd in Frameworks */,
+				AC4314D21C8ACD4700C2D391 /* libz.tbd in Frameworks */,
+				AC4314D01C8ACD3E00C2D391 /* SystemConfiguration.framework in Frameworks */,
+				AC4314CE1C8ACD3400C2D391 /* StoreKit.framework in Frameworks */,
+				AC4314CC1C8ACD2C00C2D391 /* Social.framework in Frameworks */,
+				AC4314CA1C8ACD2300C2D391 /* Security.framework in Frameworks */,
+				AC4314C81C8ACD1800C2D391 /* QuartzCore.framework in Frameworks */,
+				AC4314C61C8ACD0F00C2D391 /* CoreLocation.framework in Frameworks */,
+				AC4314C41C8ACD0500C2D391 /* CoreGraphics.framework in Frameworks */,
+				AC4314C21C8ACCFD00C2D391 /* CFNetwork.framework in Frameworks */,
+				AC4314C01C8ACCF400C2D391 /* AudioToolbox.framework in Frameworks */,
+				AC4314BE1C8ACCE800C2D391 /* Accounts.framework in Frameworks */,
+				AC4314BA1C8ACBD600C2D391 /* ParseUI.framework in Frameworks */,
+				AC4314B61C8ACBD600C2D391 /* Parse.framework in Frameworks */,
+				AC4314B51C8ACBD600C2D391 /* Bolts.framework in Frameworks */,
+				AC4314B81C8ACBD600C2D391 /* ParseFacebookUtilsV4.framework in Frameworks */,
+				AC4314B71C8ACBD600C2D391 /* ParseFacebookUtils.framework in Frameworks */,
+				AC4314B91C8ACBD600C2D391 /* ParseTwitterUtils.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AC1C2CE31C952E8600DE05E1 /* image API */ = {
+			isa = PBXGroup;
+			children = (
+				AC1C2CE41C952EC900DE05E1 /* BaoImage.h */,
+				AC1C2CE51C952EC900DE05E1 /* BaoImage.m */,
+				AC1C2CEA1C9534B900DE05E1 /* BaoAlbum.h */,
+				AC1C2CEB1C9534B900DE05E1 /* BaoAlbum.m */,
+				AC1C2CE71C952EED00DE05E1 /* BaoController.h */,
+				AC1C2CE81C952EED00DE05E1 /* BaoController.m */,
+			);
+			name = "image API";
+			sourceTree = "<group>";
+		};
+		AC1C2CED1C95CE4400DE05E1 /* Camera API */ = {
+			isa = PBXGroup;
+			children = (
+				AC4314D61C8AD29300C2D391 /* CameraOverlayViewController.h */,
+				AC4314D71C8AD29300C2D391 /* CameraOverlayViewController.m */,
+				AC4314E01C8B23D600C2D391 /* CaptureSessionManager.h */,
+				AC4314E11C8B23D600C2D391 /* CaptureSessionManager.m */,
+			);
+			name = "Camera API";
+			sourceTree = "<group>";
+		};
+		AC1C2CEE1C95CE5800DE05E1 /* Calculator View */ = {
+			isa = PBXGroup;
+			children = (
+				AC4314E31C8B2D2200C2D391 /* CalculatorViewController.h */,
+				AC4314E41C8B2D2200C2D391 /* CalculatorViewController.m */,
+			);
+			name = "Calculator View";
+			sourceTree = "<group>";
+		};
+		AC1C2CEF1C95CE8200DE05E1 /* Collection Summary View */ = {
+			isa = PBXGroup;
+			children = (
+				AC1C2CE01C952ADA00DE05E1 /* ImageHeaderCollectionReusableView.h */,
+				AC1C2CE11C952ADA00DE05E1 /* ImageHeaderCollectionReusableView.m */,
+				AC1C2CDD1C952A4100DE05E1 /* SummaryViewController.h */,
+				AC1C2CDE1C952A4100DE05E1 /* SummaryViewController.m */,
+				AC1C2CD71C9529DC00DE05E1 /* ImagePriceCollectionViewCell.h */,
+				AC1C2CD81C9529DC00DE05E1 /* ImagePriceCollectionViewCell.m */,
+			);
+			name = "Collection Summary View";
+			sourceTree = "<group>";
+		};
+		AC4314891C8ACA3700C2D391 = {
+			isa = PBXGroup;
+			children = (
+				AC4314D51C8ACDA100C2D391 /* Framework */,
+				AC4314941C8ACA3700C2D391 /* CheckCheckBao */,
+				AC4314931C8ACA3700C2D391 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AC4314931C8ACA3700C2D391 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AC4314921C8ACA3700C2D391 /* CheckCheckBao.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AC4314941C8ACA3700C2D391 /* CheckCheckBao */ = {
+			isa = PBXGroup;
+			children = (
+				AC1C2CE31C952E8600DE05E1 /* image API */,
+				AC4314981C8ACA3800C2D391 /* AppDelegate.h */,
+				AC4314991C8ACA3800C2D391 /* AppDelegate.m */,
+				AC43149B1C8ACA3800C2D391 /* ViewController.h */,
+				AC43149C1C8ACA3800C2D391 /* ViewController.m */,
+				AC43149E1C8ACA3900C2D391 /* Main.storyboard */,
+				AC4314DC1C8B1FAE00C2D391 /* CameraPreviewViewController.h */,
+				AC4314DD1C8B1FAE00C2D391 /* CameraPreviewViewController.m */,
+				AC1C2CEF1C95CE8200DE05E1 /* Collection Summary View */,
+				AC1C2CEE1C95CE5800DE05E1 /* Calculator View */,
+				AC1C2CED1C95CE4400DE05E1 /* Camera API */,
+				AC4314A41C8ACA3A00C2D391 /* Assets.xcassets */,
+				AC4314A61C8ACA3A00C2D391 /* LaunchScreen.storyboard */,
+				AC4314A91C8ACA3A00C2D391 /* Info.plist */,
+				AC4314A11C8ACA3900C2D391 /* CheckCheckBao.xcdatamodeld */,
+				AC4314951C8ACA3800C2D391 /* Supporting Files */,
+			);
+			path = CheckCheckBao;
+			sourceTree = "<group>";
+		};
+		AC4314951C8ACA3800C2D391 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AC4314961C8ACA3800C2D391 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AC4314D51C8ACDA100C2D391 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				AC4314AF1C8ACBD600C2D391 /* Bolts.framework */,
+				AC4314B01C8ACBD600C2D391 /* Parse.framework */,
+				AC4314B11C8ACBD600C2D391 /* ParseFacebookUtils.framework */,
+				AC4314B21C8ACBD600C2D391 /* ParseFacebookUtilsV4.framework */,
+				AC4314B31C8ACBD600C2D391 /* ParseTwitterUtils.framework */,
+				AC4314B41C8ACBD600C2D391 /* ParseUI.framework */,
+				AC4314D31C8ACD5C00C2D391 /* libsqlite3.tbd */,
+				AC4314D11C8ACD4700C2D391 /* libz.tbd */,
+				AC4314CF1C8ACD3E00C2D391 /* SystemConfiguration.framework */,
+				AC4314CD1C8ACD3400C2D391 /* StoreKit.framework */,
+				AC4314CB1C8ACD2C00C2D391 /* Social.framework */,
+				AC4314C91C8ACD2300C2D391 /* Security.framework */,
+				AC4314C71C8ACD1800C2D391 /* QuartzCore.framework */,
+				AC4314C51C8ACD0F00C2D391 /* CoreLocation.framework */,
+				AC4314C31C8ACD0500C2D391 /* CoreGraphics.framework */,
+				AC4314C11C8ACCFD00C2D391 /* CFNetwork.framework */,
+				AC4314BF1C8ACCF400C2D391 /* AudioToolbox.framework */,
+				AC4314BD1C8ACCE800C2D391 /* Accounts.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AC4314911C8ACA3700C2D391 /* CheckCheckBao */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC4314AC1C8ACA3A00C2D391 /* Build configuration list for PBXNativeTarget "CheckCheckBao" */;
+			buildPhases = (
+				AC43148E1C8ACA3700C2D391 /* Sources */,
+				AC43148F1C8ACA3700C2D391 /* Frameworks */,
+				AC4314901C8ACA3700C2D391 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CheckCheckBao;
+			productName = CheckCheckBao;
+			productReference = AC4314921C8ACA3700C2D391 /* CheckCheckBao.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AC43148A1C8ACA3700C2D391 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "陳冠宇";
+				TargetAttributes = {
+					AC4314911C8ACA3700C2D391 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+				};
+			};
+			buildConfigurationList = AC43148D1C8ACA3700C2D391 /* Build configuration list for PBXProject "CheckCheckBao" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AC4314891C8ACA3700C2D391;
+			productRefGroup = AC4314931C8ACA3700C2D391 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AC4314911C8ACA3700C2D391 /* CheckCheckBao */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AC4314901C8ACA3700C2D391 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC4314A81C8ACA3A00C2D391 /* LaunchScreen.storyboard in Resources */,
+				AC4314A51C8ACA3A00C2D391 /* Assets.xcassets in Resources */,
+				AC4314A01C8ACA3900C2D391 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AC43148E1C8ACA3700C2D391 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC4314A31C8ACA3900C2D391 /* CheckCheckBao.xcdatamodeld in Sources */,
+				AC43149D1C8ACA3800C2D391 /* ViewController.m in Sources */,
+				AC1C2CE61C952EC900DE05E1 /* BaoImage.m in Sources */,
+				AC4314DE1C8B1FAE00C2D391 /* CameraPreviewViewController.m in Sources */,
+				AC1C2CEC1C9534B900DE05E1 /* BaoAlbum.m in Sources */,
+				AC1C2CE91C952EED00DE05E1 /* BaoController.m in Sources */,
+				AC1C2CDF1C952A4100DE05E1 /* SummaryViewController.m in Sources */,
+				AC43149A1C8ACA3800C2D391 /* AppDelegate.m in Sources */,
+				AC4314971C8ACA3800C2D391 /* main.m in Sources */,
+				AC4314D81C8AD29300C2D391 /* CameraOverlayViewController.m in Sources */,
+				AC4314E51C8B2D2200C2D391 /* CalculatorViewController.m in Sources */,
+				AC1C2CE21C952ADA00DE05E1 /* ImageHeaderCollectionReusableView.m in Sources */,
+				AC4314E21C8B23D600C2D391 /* CaptureSessionManager.m in Sources */,
+				AC1C2CD91C9529DC00DE05E1 /* ImagePriceCollectionViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AC43149E1C8ACA3900C2D391 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC43149F1C8ACA3900C2D391 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AC4314A61C8ACA3A00C2D391 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC4314A71C8ACA3A00C2D391 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AC4314AA1C8ACA3A00C2D391 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		AC4314AB1C8ACA3A00C2D391 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AC4314AD1C8ACA3A00C2D391 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CheckCheckBao",
+				);
+				INFOPLIST_FILE = CheckCheckBao/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Morpheus.CheckCheckBao;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AC4314AE1C8ACA3A00C2D391 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CheckCheckBao",
+				);
+				INFOPLIST_FILE = CheckCheckBao/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Morpheus.CheckCheckBao;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AC43148D1C8ACA3700C2D391 /* Build configuration list for PBXProject "CheckCheckBao" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC4314AA1C8ACA3A00C2D391 /* Debug */,
+				AC4314AB1C8ACA3A00C2D391 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AC4314AC1C8ACA3A00C2D391 /* Build configuration list for PBXNativeTarget "CheckCheckBao" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC4314AD1C8ACA3A00C2D391 /* Debug */,
+				AC4314AE1C8ACA3A00C2D391 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AC4314A11C8ACA3900C2D391 /* CheckCheckBao.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AC4314A21C8ACA3900C2D391 /* CheckCheckBao.xcdatamodel */,
+			);
+			currentVersion = AC4314A21C8ACA3900C2D391 /* CheckCheckBao.xcdatamodel */;
+			path = CheckCheckBao.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = AC43148A1C8ACA3700C2D391 /* Project object */;
+}
