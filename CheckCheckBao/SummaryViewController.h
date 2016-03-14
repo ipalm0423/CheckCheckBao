@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaoController.h"
+#import "ImageHeaderCollectionReusableView.h"
+#import "ImagePriceCollectionViewCell.h"
 
-@interface SummaryViewController : UIViewController
+
+@interface SummaryViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, BaoControllerDelegate>
 
 
 

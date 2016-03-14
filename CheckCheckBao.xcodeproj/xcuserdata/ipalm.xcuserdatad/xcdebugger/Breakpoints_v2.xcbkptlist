@@ -23,14 +23,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CheckCheckBao/image API/BaoController.m"
-            timestampString = "479581449.797469"
+            filePath = "CheckCheckBao/SummaryViewController.m"
+            timestampString = "479666258.764013"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
-            landmarkName = "-saveImageToAssetCollection2:forBaoImage:"
-            landmarkType = "5">
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "@implementation SummaryViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

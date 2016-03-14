@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *labelHeader;
 
 
+@property (strong, nonatomic) IBOutlet UILabel *labelPrice;
 
 
 @end

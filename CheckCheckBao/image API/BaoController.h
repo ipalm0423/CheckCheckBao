@@ -31,5 +31,5 @@
 -(BaoAlbum*) findBaoAlbumFromAlbumsByDate:(NSDate*)date;
 -(void)saveImageToAlbum:(UIImage*)image byDate:(NSDate*)date price:(float)price;
 -(void) saveAllChange;
-
+-(UIImage*)fetchImageFromAssetURL:(NSURL*)url;
 @end

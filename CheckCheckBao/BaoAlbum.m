@@ -21,13 +21,12 @@
     self = [super init];
     if (self) {
         NSDateFormatter *yearFormatter = [[NSDateFormatter alloc] init];
-        [yearFormatter setDateFormat: [NSDateFormatter dateFormatFromTemplate:@"yyyy" options:0 locale:[NSLocale currentLocale]]];
+        [yearFormatter setDateFormat:@"yyyy"];
         
         NSDateFormatter *monthFormatter = [[NSDateFormatter alloc] init];
-        [monthFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"MM" options:0 locale:[NSLocale currentLocale]]];
+        [monthFormatter setDateFormat:@"MM"];
         
-        NSDateFormatter *dayFormatter = [[NSDateFormatter alloc] init];
-        [dayFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"dd" options:0 locale:[NSLocale currentLocale]]];
+        
         
         NSDate *now = [NSDate date];
         self.dateCreate = now;
@@ -45,13 +44,12 @@
     self = [super init];
     if (self) {
         NSDateFormatter *yearFormatter = [[NSDateFormatter alloc] init];
-        [yearFormatter setDateFormat: [NSDateFormatter dateFormatFromTemplate:@"yyyy" options:0 locale:[NSLocale currentLocale]]];
+        [yearFormatter setDateFormat:@"yyyy"];
         
         NSDateFormatter *monthFormatter = [[NSDateFormatter alloc] init];
-        [monthFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"MM" options:0 locale:[NSLocale currentLocale]]];
+        [monthFormatter setDateFormat:@"MM"];
         
-        NSDateFormatter *dayFormatter = [[NSDateFormatter alloc] init];
-        [dayFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"dd" options:0 locale:[NSLocale currentLocale]]];
+        
         
         
         self.dateCreate = date;
@@ -59,6 +57,7 @@
         self.month = [monthFormatter stringFromDate:date];
         self.baoImages = [[NSMutableArray alloc] init];
         self.sum = 0;
+        NSLog(@"create album: year: %@, month:%@", self.year, self.month);
         
     }
     

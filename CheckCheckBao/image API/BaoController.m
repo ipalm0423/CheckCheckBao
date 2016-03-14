@@ -67,7 +67,8 @@ static BaoController *sharedBaoController = nil;
             self.baoAlbums = albums;
             NSLog(@"load default albums, album count: %li", albums.count);
             BaoAlbum *firstAlbum = (BaoAlbum*) [albums objectAtIndex:0];
-            NSLog(@"test image count: %li", firstAlbum.baoImages.count);
+            BaoImage *image = (BaoImage*) [firstAlbum.baoImages objectAtIndex:0];
+            NSLog(@"test image count: %li, url: %@", firstAlbum.baoImages.count, image.imageURL);
         }else {
             self.baoAlbums = [[NSMutableArray alloc] init];
         }
@@ -114,11 +115,15 @@ static BaoController *sharedBaoController = nil;
     
     //save to album
     BaoAlbum *baoAlbum = [self findBaoAlbumFromAlbumsByDate:date];
-    if (baoAlbum) {
+    if (baoAlbum != nil) {
+        NSLog(@"find old album");
         [baoAlbum.baoImages addObject:baoImage];
+        baoAlbum.sum += price; //add to summary
     }else {
         //can't find album, create new
+        NSLog(@"create new album");
         BaoAlbum *newBaoAlbum = [[BaoAlbum alloc] initByDate:date];
+        newBaoAlbum.sum += price; //add to summary
         [newBaoAlbum.baoImages addObject:baoImage];
         [self.baoAlbums addObject:newBaoAlbum];
     }
@@ -170,27 +175,7 @@ static BaoController *sharedBaoController = nil;
     
 }
 
--(void)saveImageToAssetCollection2:(UIImage*)image forBaoImage:(BaoImage*)baoImage {
-    NSLog(@"save image to asset...");
-    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-        PHAssetChangeRequest *request = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
-        assetPlaceHolder = [request placeholderForCreatedAsset];
-        PHFetchResult *assetPhoto = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
-        PHAssetCollectionChangeRequest *addImage = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:assetCollection assets:assetPhoto];
-        [addImage addAssets:@[assetPlaceHolder]];
-    } completionHandler:^(BOOL success, NSError * _Nullable error) {
-        if (success) {
-            NSLog(@"save image to asset success");
-            NSString *uuid = [assetPlaceHolder.localIdentifier substringToIndex:36];
-            
-            baoImage.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"assets-library://asset/asset.PNG?id=%@&ext=JPG", uuid]];
-            [self saveAllChange];
-        }else {
-            NSLog(error);
-        }
-    }];
-    
-}
+
 
 -(void)saveImageToAssetCollection:(UIImage*)image forBaoImage:(BaoImage*)baoImage {
     NSLog(@"save image to asset...");
@@ -205,34 +190,50 @@ static BaoController *sharedBaoController = nil;
             NSLog(@"save image to asset success");
             NSString *uuid = [assetPlaceHolder.localIdentifier substringToIndex:36];
             
-            baoImage.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"assets-library://asset/asset.PNG?id=%@&ext=JPG", uuid]];
+            baoImage.imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"assets-library://asset/asset.JPG?id=%@&ext=JPG", uuid]];
             [self saveAllChange];
         }else {
-            NSLog(error);
+            NSLog(@"save image error:%@",error);
         }
     }];
     
 }
 
+-(UIImage*)fetchImageFromAssetURL:(NSURL*)url{
+    
+    __block UIImage *image = [[UIImage alloc]init];
+    NSLog(@"fetch image");
+    PHAsset *asset = [PHAsset fetchAssetsWithALAssetURLs:@[url] options:nil].firstObject;
+    CGSize size = CGSizeMake(200, 200);
+    PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
+    option.resizeMode = PHImageRequestOptionsResizeModeNone;
+    
+    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFit options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        image = result;
+    }];
+    return image;
+}
+
+
+
+
 
 #pragma mark - date
 -(NSString*)getYearStringFromDate:(NSDate*)date{
     NSDateFormatter *yearFormatter = [[NSDateFormatter alloc] init];
-    [yearFormatter setDateFormat: [NSDateFormatter dateFormatFromTemplate:@"yyyy" options:0 locale:[NSLocale currentLocale]]];
+    [yearFormatter setDateFormat:@"yyyy"];
+    
     return [yearFormatter stringFromDate:date];
 }
 
 -(NSString*)getMonthStringFromDate:(NSDate*)date{
     NSDateFormatter *monthFormatter = [[NSDateFormatter alloc] init];
-    [monthFormatter setDateFormat: [NSDateFormatter dateFormatFromTemplate:@"MM" options:0 locale:[NSLocale currentLocale]]];
+    [monthFormatter setDateFormat:@"MM"];
+    
     return [monthFormatter stringFromDate:date];
 }
 
--(NSString*)getDayStringFromDate:(NSDate*)date{
-    NSDateFormatter *dayFormatter = [[NSDateFormatter alloc] init];
-    [dayFormatter setDateFormat: [NSDateFormatter dateFormatFromTemplate:@"dd" options:0 locale:[NSLocale currentLocale]]];
-    return [dayFormatter stringFromDate:date];
-}
+
 
 
 #pragma mark - save/load
