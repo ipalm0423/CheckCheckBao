@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaoController.h"
 
 @interface ImagePriceCollectionViewCell : UICollectionViewCell
 
@@ -17,6 +18,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *labelPrice;
 
+@property (strong, nonatomic) IBOutlet UILabel *labelTime;
 
 
 @end

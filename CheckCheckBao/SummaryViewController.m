@@ -7,6 +7,9 @@
 //
 
 #import "SummaryViewController.h"
+#import "SummarySectionMonthlyTableViewCell.h"
+#import "SummaryPictureTableViewCell.h"
+
 
 @interface SummaryViewController ()
 
@@ -15,6 +18,8 @@
 @implementation SummaryViewController{
     
     __block BaoController *baoController;
+    NSMutableArray *monthlyBaoAlbumArray;
+    BaoAlbum *unPriceBaoAlbum;
     
 }
 
@@ -23,12 +28,18 @@
     // Do any additional setup after loading the view.
     
     //baoController
-    [self setupController];
+    baoController = [BaoController shareController];
+    baoController.delegateBaoController = self;
+    
+    //setup
+    [self setupAllSummaryArray];
     
     //collection view
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    [self.collectionView reloadData];
+    self.tableView.estimatedRowHeight = 200;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,90 +47,164 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - controller
--(void)setupController{
-    if (baoController == nil) {
-        baoController = [BaoController sharedController];
-        baoController.delegateBaoController = self;
-    }
-    
-    
-}
 
 -(void)viewWillAppear:(BOOL)animated{
-    [self.collectionView reloadData];
+    
+    [self setupAllSummaryArray];
+    [self.tableView reloadData];
+    NSLog(@"view will appear");
+    
     [super viewWillAppear:animated];
 }
 
-#pragma mark - collection view delegate
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    NSLog(@"section count: %li",baoController.baoAlbums.count);
-    return baoController.baoAlbums.count;
-    //return 0;
+
+#pragma mark - data separate
+-(void)setupAllSummaryArray{
+    [self setupMonthlyArray];
+    [self setupUnPriceArray];
 }
 
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    BaoAlbum *baoAlbum = [baoController.baoAlbums objectAtIndex:section];
-    NSLog(@"image count:%li", baoAlbum.baoImages.count);
-    return baoAlbum.baoImages.count;
+-(void)setupMonthlyArray{
+    monthlyBaoAlbumArray = [NSMutableArray new];
+    
+    [baoController sortBaoAlbumsByDate];//from old to new
+    
+    monthlyBaoAlbumArray = baoController.baoAlbums;
+    NSLog(@"monthly count: %li", monthlyBaoAlbumArray.count);
 }
 
+-(void)setupUnPriceArray{
+    [baoController updateUnPriceBaoImageArray];
+    unPriceBaoAlbum = baoController.unPriceBaoAlbum;
+    
+    NSLog(@"un Price image count: %li", unPriceBaoAlbum.baoImages.count);
+}
 
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+//deprecate
+/*
+-(void)setupWeeklyData{
     
-    ImagePriceCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"priceCollectionCell" forIndexPath:indexPath];
-    BaoAlbum *baoAlbum = [baoController.baoAlbums objectAtIndex:indexPath.section];
-    BaoImage *baoImage = [baoAlbum.baoImages objectAtIndex:indexPath.row];
-    NSLog(@"indexPath:%@", indexPath);
-    
-    cell.labelPrice.text = [NSString stringWithFormat:@"%f", baoImage.price];
-    UIImage *image = [[BaoController sharedController] fetchImageFromAssetURL:baoImage.imageURL];
-    
-    
-    if (image) {
-        NSLog(@"have image url:%@", baoImage.imageURL);
-        cell.imageView.image = image;
+    for (int i = 0; i < baoController.baoAlbums.count; i++) {
+        BaoAlbum *baoAlbum = [baoController.baoAlbums objectAtIndex:i];
+        NSString *key = [NSString stringWithFormat:@"%@-%@", baoAlbum.year, baoAlbum.month];
         
-    }else {
-        NSLog(@"no image");
-        cell.backgroundColor = [UIColor grayColor];
+        
     }
     
     
+}
+
+-(void)dateComponent{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:( NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit ) fromDate:[[NSDate alloc] init]];
     
+    [components setHour:-[components hour]];
+    [components setMinute:-[components minute]];
+    [components setSecond:-[components second]];
+    NSDate *today = [cal dateByAddingComponents:components toDate:[[NSDate alloc] init] options:0]; //This variable should now be pointing at a date object that is the start of today (midnight);
+    
+    [components setHour:-24];
+    [components setMinute:0];
+    [components setSecond:0];
+    NSDate *yesterday = [cal dateByAddingComponents:components toDate: today options:0];
+    
+    components = [cal components:NSWeekdayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:[[NSDate alloc] init]];
+    
+    [components setDay:([components day] - ([components weekday] - 1))];
+    NSDate *thisWeek  = [cal dateFromComponents:components];
+    
+    [components setDay:([components day] - 7)];
+    NSDate *lastWeek  = [cal dateFromComponents:components];
+    
+    [components setDay:([components day] - ([components day] -1))];
+    NSDate *thisMonth = [cal dateFromComponents:components];
+    
+    [components setMonth:([components month] - 1)];
+    NSDate *lastMonth = [cal dateFromComponents:components];
+    
+    NSLog(@"today=%@",today);
+    NSLog(@"yesterday=%@",yesterday);
+    NSLog(@"thisWeek=%@",thisWeek);
+    NSLog(@"lastWeek=%@",lastWeek);
+    NSLog(@"thisMonth=%@",thisMonth);
+    NSLog(@"lastMonth=%@",lastMonth);
+}
+*/
+
+#pragma mark - table view delegate
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    return monthlyBaoAlbumArray.count + 1;// section.0 is 沒有標價的照片
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (section == 0 && unPriceBaoAlbum.baoImages.count > 0) {
+        return 1;
+    }else if (section > 0){//monthly array count
+        
+        return 1;
+    }
+    
+    return 0;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    SummaryPictureTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SummaryPicture" forIndexPath:indexPath];
+    NSMutableArray *baoImages = nil;
+    
+    //data
+    if (indexPath.section == 0) {
+        baoImages = unPriceBaoAlbum.baoImages;
+    }else{//monthly images
+        BaoAlbum *baoAlbum = [monthlyBaoAlbumArray objectAtIndex:(indexPath.section-1)];
+        baoImages = baoAlbum.baoImages;
+    }
+    
+    //collection view delegate
+    cell.baoImages = baoImages;
+    cell.collectionView.delegate = cell;
+    cell.collectionView.dataSource = cell;
+    [cell.collectionView reloadData];
     
     return cell;
 }
-/*
--(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    UICollectionReusableView *reusableview = nil;
-    
-    if (kind == UICollectionElementKindSectionHeader) {
-        ImageHeaderCollectionReusableView *header = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerCollectionCell" forIndexPath:indexPath];
-        ImageHeaderCollectionReusableView *headerView = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerCollectionCell" forIndexPath:indexPath];
-        BaoAlbum *baoAlbum = [baoController.baoAlbums objectAtIndex:indexPath.section];
-        
-        NSString *title = [NSString stringWithFormat:@"Monthly Sum: %f$", baoAlbum.sum];
-        header.labelPrice.text = title;
-        
-        header.labelHeader.text = [NSString stringWithFormat:@"%@ / %@", baoAlbum.year, baoAlbum.month];
-        
-        
-        return header;
-    }
-    
-    
-    if (kind == UICollectionElementKindSectionFooter) {
-        
-        UICollectionReusableView *footerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterView" forIndexPath:indexPath];
-        
-        reusableview = footerview;
-    }
-    
-    return nil;
-}*/
 
-#pragma mark - calculation
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0 && unPriceBaoAlbum.baoImages.count > 0) {
+        return 60;
+    }else if (section > 0 && monthlyBaoAlbumArray.count > 0) {
+        return 60;
+    }
+    
+    
+   
+    
+    return 0;
+}
+
+
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    //monthly summary
+    SummarySectionMonthlyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SummarySectionMonthly"];
+    BaoAlbum *baoAlbum = nil;
+    
+    if (section == 0) {
+        baoAlbum = unPriceBaoAlbum;
+        cell.labelTime.text = @"These bills don't have price";
+        cell.labelSum.text = [NSString stringWithFormat:@"%li pcs", unPriceBaoAlbum.baoImages.count];
+    }else{//monthly array count
+        baoAlbum = [monthlyBaoAlbumArray objectAtIndex:(section-1)];
+        cell.labelSum.text = [baoAlbum getStringSumPrice];
+        cell.labelTime.text = [baoAlbum getStringTime];
+    }
+    
+    
+    return cell.contentView;
+}
+
+
 
 
 /*

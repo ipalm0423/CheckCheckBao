@@ -13,6 +13,8 @@
 		AC1C2CE61C952EC900DE05E1 /* BaoImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1C2CE51C952EC900DE05E1 /* BaoImage.m */; };
 		AC1C2CE91C952EED00DE05E1 /* BaoController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1C2CE81C952EED00DE05E1 /* BaoController.m */; };
 		AC1C2CEC1C9534B900DE05E1 /* BaoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1C2CEB1C9534B900DE05E1 /* BaoAlbum.m */; };
+		AC1E248D1C9D0C7800D495E7 /* SummaryPictureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1E248C1C9D0C7800D495E7 /* SummaryPictureTableViewCell.m */; };
+		AC1E24911C9D13C500D495E7 /* SummarySectionMonthlyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1E24901C9D13C500D495E7 /* SummarySectionMonthlyTableViewCell.m */; };
 		AC4314971C8ACA3800C2D391 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4314961C8ACA3800C2D391 /* main.m */; };
 		AC43149A1C8ACA3800C2D391 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4314991C8ACA3800C2D391 /* AppDelegate.m */; };
 		AC43149D1C8ACA3800C2D391 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC43149C1C8ACA3800C2D391 /* ViewController.m */; };
@@ -57,6 +59,10 @@
 		AC1C2CE81C952EED00DE05E1 /* BaoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaoController.m; path = "image API/BaoController.m"; sourceTree = "<group>"; };
 		AC1C2CEA1C9534B900DE05E1 /* BaoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaoAlbum.h; sourceTree = "<group>"; };
 		AC1C2CEB1C9534B900DE05E1 /* BaoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaoAlbum.m; sourceTree = "<group>"; };
+		AC1E248B1C9D0C7800D495E7 /* SummaryPictureTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryPictureTableViewCell.h; sourceTree = "<group>"; };
+		AC1E248C1C9D0C7800D495E7 /* SummaryPictureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryPictureTableViewCell.m; sourceTree = "<group>"; };
+		AC1E248F1C9D13C500D495E7 /* SummarySectionMonthlyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummarySectionMonthlyTableViewCell.h; sourceTree = "<group>"; };
+		AC1E24901C9D13C500D495E7 /* SummarySectionMonthlyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummarySectionMonthlyTableViewCell.m; sourceTree = "<group>"; };
 		AC4314921C8ACA3700C2D391 /* CheckCheckBao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheckCheckBao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC4314961C8ACA3800C2D391 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AC4314981C8ACA3800C2D391 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -161,14 +167,34 @@
 		AC1C2CEF1C95CE8200DE05E1 /* Collection Summary View */ = {
 			isa = PBXGroup;
 			children = (
-				AC1C2CE01C952ADA00DE05E1 /* ImageHeaderCollectionReusableView.h */,
-				AC1C2CE11C952ADA00DE05E1 /* ImageHeaderCollectionReusableView.m */,
+				AC1E24871C9D0BD900D495E7 /* cell */,
 				AC1C2CDD1C952A4100DE05E1 /* SummaryViewController.h */,
 				AC1C2CDE1C952A4100DE05E1 /* SummaryViewController.m */,
+			);
+			name = "Collection Summary View";
+			sourceTree = "<group>";
+		};
+		AC1E24871C9D0BD900D495E7 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				AC1E248E1C9D0CC400D495E7 /* collectionView cell */,
+				AC1E248B1C9D0C7800D495E7 /* SummaryPictureTableViewCell.h */,
+				AC1E248F1C9D13C500D495E7 /* SummarySectionMonthlyTableViewCell.h */,
+				AC1E24901C9D13C500D495E7 /* SummarySectionMonthlyTableViewCell.m */,
+				AC1E248C1C9D0C7800D495E7 /* SummaryPictureTableViewCell.m */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		AC1E248E1C9D0CC400D495E7 /* collectionView cell */ = {
+			isa = PBXGroup;
+			children = (
+				AC1C2CE01C952ADA00DE05E1 /* ImageHeaderCollectionReusableView.h */,
+				AC1C2CE11C952ADA00DE05E1 /* ImageHeaderCollectionReusableView.m */,
 				AC1C2CD71C9529DC00DE05E1 /* ImagePriceCollectionViewCell.h */,
 				AC1C2CD81C9529DC00DE05E1 /* ImagePriceCollectionViewCell.m */,
 			);
-			name = "Collection Summary View";
+			name = "collectionView cell";
 			sourceTree = "<group>";
 		};
 		AC4314891C8ACA3700C2D391 = {
@@ -314,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC1E24911C9D13C500D495E7 /* SummarySectionMonthlyTableViewCell.m in Sources */,
 				AC4314A31C8ACA3900C2D391 /* CheckCheckBao.xcdatamodeld in Sources */,
 				AC43149D1C8ACA3800C2D391 /* ViewController.m in Sources */,
 				AC1C2CE61C952EC900DE05E1 /* BaoImage.m in Sources */,
@@ -325,6 +352,7 @@
 				AC4314971C8ACA3800C2D391 /* main.m in Sources */,
 				AC4314D81C8AD29300C2D391 /* CameraOverlayViewController.m in Sources */,
 				AC4314E51C8B2D2200C2D391 /* CalculatorViewController.m in Sources */,
+				AC1E248D1C9D0C7800D495E7 /* SummaryPictureTableViewCell.m in Sources */,
 				AC1C2CE21C952ADA00DE05E1 /* ImageHeaderCollectionReusableView.m in Sources */,
 				AC4314E21C8B23D600C2D391 /* CaptureSessionManager.m in Sources */,
 				AC1C2CD91C9529DC00DE05E1 /* ImagePriceCollectionViewCell.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BaoAlbum.h"
+#import "BaoImage.h"
 #import <UIKit/UIKit.h>
 
 @class BaoController;
@@ -23,13 +24,22 @@
 
 @property id<BaoControllerDelegate> delegateBaoController;
 @property NSMutableArray *baoAlbums;
+@property BaoAlbum *unPriceBaoAlbum;
 
 //Singleton
-+ (id)sharedController;
++ (id)shareController;
+-(id)initWithDefaultBaoAlbums;
 
-
+//save / load
 -(BaoAlbum*) findBaoAlbumFromAlbumsByDate:(NSDate*)date;
 -(void)saveImageToAlbum:(UIImage*)image byDate:(NSDate*)date price:(float)price;
+
+//calculate
+-(void)updateUnPriceBaoImageArray;
+-(void)sortBaoAlbumsByDate;
+
 -(void) saveAllChange;
 -(UIImage*)fetchImageFromAssetURL:(NSURL*)url;
+
+
 @end

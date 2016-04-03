@@ -12,12 +12,12 @@
 #import "ImagePriceCollectionViewCell.h"
 
 
-@interface SummaryViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, BaoControllerDelegate>
+@interface SummaryViewController : UIViewController<BaoControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 
-@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 
 
 

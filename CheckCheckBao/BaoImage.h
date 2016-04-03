@@ -16,10 +16,14 @@
 @property float price;
 @property NSDate *dateCreate;
 @property __block NSURL *imageURL;
+@property NSString *note;
 
 
+-(id) initByDate:(NSDate*)date name:(NSString*)newName price:(float)newPrice imageURL:(NSURL*)url note:(NSString*)newNote;
 
--(id) initByDate:(NSDate*)date;
+//string
+-(NSString*)getStringPrice;
+-(NSString*)getStringTime;
 
 
 @end

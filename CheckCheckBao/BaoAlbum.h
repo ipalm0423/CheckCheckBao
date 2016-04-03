@@ -14,11 +14,22 @@
 
 @property NSString *year;
 @property NSString *month;
-@property NSDate *dateCreate;
+@property NSDate *nsDate;
 @property float sum;
 @property NSMutableArray *baoImages;
 
 
 -(id)initByDate:(NSDate*)date;
+
+//image
+-(void)sortImagesByDate;
+-(void)addNewBaoImage:(BaoImage*)baoImage;
+
+//accounting
+-(void)updateSumPrice;
+
+//string
+-(NSString*)getStringSumPrice;
+-(NSString*)getStringTime;
 
 @end

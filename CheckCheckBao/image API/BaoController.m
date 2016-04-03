@@ -19,42 +19,70 @@
 
 @synthesize delegateBaoController;
 @synthesize baoAlbums;
+@synthesize unPriceBaoAlbum;
 
 //Singleton
 static BaoController *sharedBaoController = nil;
+static BaoController *shareBaoController = nil;
 
 + (id)sharedController {
     @synchronized(self) {
         if (sharedBaoController == nil){
             static dispatch_once_t onceToken;
             dispatch_once(&onceToken, ^{
-                sharedBaoController = [[self alloc] init];//set to default user
+                sharedBaoController = [[self alloc] initWithDefaultBaoAlbums];//set to default user
             });
             
         }
     }
     return sharedBaoController;
 }
++ (id)shareController {
+    @synchronized(self) {
+        if (sharedBaoController == nil){
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                shareBaoController = [[self alloc] initWithDefaultBaoAlbums];//set to default user
+            });
+            
+        }
+    }
+    return shareBaoController;
+}
+
 
 - (id)init {
     if (self = [super init]) {
-        if (defaultUser == nil) {
-            
-            //user default
-            defaultUser = [NSUserDefaults standardUserDefaults];
-            [self loadDefaultAlbums];
-            
-            //image asset
-            [self setupCheckBaoPHAssetAlbum];
-        }
-        
-        
         
     }
     return self;
 }
 
-
+-(id)initWithDefaultBaoAlbums{
+    self = [self init];
+    if (self) {
+        if (defaultUser == nil) {
+            
+            //user default
+            defaultUser = [NSUserDefaults standardUserDefaults];
+            
+            //image asset
+            [self setupCheckBaoPHAssetAlbum];
+            
+            //load default
+            [self loadDefaultAlbums];
+            
+            //sort bao image
+            [self sortBaoAlbumsByDate];
+            
+            //update unPric image
+            [self updateUnPriceBaoImageArray];
+            
+            [self saveAllChange];
+        }
+    }
+    return self;
+}
 
 #pragma mark - default controller
 
@@ -66,9 +94,7 @@ static BaoController *sharedBaoController = nil;
         if (albums != nil) {
             self.baoAlbums = albums;
             NSLog(@"load default albums, album count: %li", albums.count);
-            BaoAlbum *firstAlbum = (BaoAlbum*) [albums objectAtIndex:0];
-            BaoImage *image = (BaoImage*) [firstAlbum.baoImages objectAtIndex:0];
-            NSLog(@"test image count: %li, url: %@", firstAlbum.baoImages.count, image.imageURL);
+            
         }else {
             self.baoAlbums = [[NSMutableArray alloc] init];
         }
@@ -109,28 +135,68 @@ static BaoController *sharedBaoController = nil;
 -(void)saveImageToAlbum:(UIImage*)image byDate:(NSDate*)date price:(float)price{
     
     //create new bao image
-    BaoImage *baoImage = [[BaoImage alloc] initByDate:date];
-    baoImage.dateCreate = date;
-    baoImage.price = price;
+    BaoImage *baoImage = [[BaoImage alloc] initByDate:date name:@"" price:price imageURL:nil note:@""];
     
     //save to album
     BaoAlbum *baoAlbum = [self findBaoAlbumFromAlbumsByDate:date];
     if (baoAlbum != nil) {
         NSLog(@"find old album");
-        [baoAlbum.baoImages addObject:baoImage];
-        baoAlbum.sum += price; //add to summary
+        [baoAlbum addNewBaoImage:baoImage];
+        
     }else {
         //can't find album, create new
         NSLog(@"create new album");
         BaoAlbum *newBaoAlbum = [[BaoAlbum alloc] initByDate:date];
-        newBaoAlbum.sum += price; //add to summary
-        [newBaoAlbum.baoImages addObject:baoImage];
+        [newBaoAlbum addNewBaoImage:baoImage];
         [self.baoAlbums addObject:newBaoAlbum];
     }
     
+    
     //save to asset, and save url to baoImage
     [self saveImageToAssetCollection:image forBaoImage:baoImage];
+    [self saveAllChange];
+}
+
+
+#pragma mark - calculation
+-(void)sortBaoAlbumsByDate{
+    //新的放前面 0, 1, 2 ....
+    NSMutableArray *sortArray = [NSMutableArray new];
+    for (int i = 0; i < self.baoAlbums.count; i++) {
+        BaoAlbum *baoAlbum = [self.baoAlbums objectAtIndex:i];
+        BOOL flag = NO;
+        for (int j = 0; j < sortArray.count; j++) {
+            BaoAlbum *albumInSort = [sortArray objectAtIndex:j];
+            if ([albumInSort.nsDate timeIntervalSinceDate:baoAlbum.nsDate] < 0) {
+                [sortArray insertObject:baoAlbum atIndex:j];
+                flag = YES;
+                break;
+            }
+        }
+        if (flag == NO) {//place to end of array
+            [sortArray addObject:baoAlbum];
+        }
+    }
     
+    self.baoAlbums = sortArray;
+    
+}
+
+-(void)updateUnPriceBaoImageArray{
+    BaoAlbum *newbaoAlbum = [[BaoAlbum alloc]init];
+    
+    //calculate
+    for (BaoAlbum *baoAlbum in self.baoAlbums) {
+        for (BaoImage *baoImage in baoAlbum.baoImages) {
+            if (baoImage.price == 0) {
+                [newbaoAlbum.baoImages addObject:baoImage];
+            }
+        }
+    }
+    
+    [newbaoAlbum updateSumPrice];
+    
+    self.unPriceBaoAlbum = newbaoAlbum;
 }
 
 

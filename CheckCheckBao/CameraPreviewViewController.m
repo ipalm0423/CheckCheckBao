@@ -31,7 +31,7 @@
     [self.calculatorViewController addSubviewOnBottom:self.view];
     
     //bao controller
-    baoController = [BaoController sharedController];
+    baoController = [BaoController shareController];
 }
 
 -(void) viewDidAppear:(BOOL)animated {
