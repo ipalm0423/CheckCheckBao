@@ -20,12 +20,12 @@
 -(id)init {
     self = [super init];
     if (self) {
-    
-        self.nsDate = [NSDate date];
         self.year = @"";
         self.month = @"";
-        self.baoImages = [[NSMutableArray alloc] init];
+        self.nsDate = [NSDate date];
         self.sum = 0;
+        self.baoImages = [[NSMutableArray alloc] init];
+        
         
     }
     
@@ -57,6 +57,7 @@
     //新的放前面 0, 1, 2 ....
     NSMutableArray *sortArray = [NSMutableArray new];
     for (int i = 0; i < self.baoImages.count; i++) {
+        
         BaoImage *baoImage = [self.baoImages objectAtIndex:i];
         BOOL flag = NO;
         for (int j = 0; j < sortArray.count; j++) {

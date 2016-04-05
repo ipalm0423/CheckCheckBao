@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+@class BaoImage;
+
+
 @interface BaoImage : NSObject <NSCoding>
 
 

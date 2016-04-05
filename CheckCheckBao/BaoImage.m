@@ -24,7 +24,7 @@
         self.name = @"";
         self.price = 0;
         self.dateCreate = [NSDate date];
-        //imageURL
+        self.imageURL = [NSURL new];
         self.note = @"";
     }
     return self;
@@ -47,7 +47,7 @@
 
 #pragma mark - string
 -(NSString*)getStringPrice{
-    NSString *string = [NSString stringWithFormat:@"%.1f", self.price];
+    NSString *string = [NSString stringWithFormat:@"＄%.1f", self.price];
     
     
     return string;
@@ -57,25 +57,53 @@
     if (self.dateCreate) {
         NSDateFormatter *format = [[NSDateFormatter alloc]init];
         [format setTimeZone:[NSTimeZone localTimeZone]];
-        [format setDateFormat:@"dd日 HH：mm"];
+        [format setDateFormat:@"MM/dd HH:mm"];
         
-        NSString *dateString = [format stringFromDate:self.dateCreate];
-        return dateString;
+        NSString *hourString = [format stringFromDate:self.dateCreate];
+        NSString *sumString = [NSString stringWithFormat:@"%@, %@", [self getStringWeekDay:self.dateCreate], hourString];
+        return sumString;
     }
     return @"no time";
 }
 
--(NSString*)getStringTime2delete{
-    NSLog(@"time: %@", self.dateCreate);
-    /*
-    NSDateFormatter *format = [[NSDateFormatter alloc]init];
-    [format setTimeZone:[NSTimeZone localTimeZone]];
-    [format setDateFormat:@"dd日 HH：mm"];
+-(NSString*)getStringWeekDay:(NSDate*)date{
     
-    NSString *dateString = [format stringFromDate:self.dateCreate];
-    */
-    return @"test1";
+    NSCalendar* currentCalendar = [NSCalendar currentCalendar];
+    NSInteger weekInteger = [[currentCalendar components:NSWeekdayCalendarUnit fromDate:date] weekday];
+    
+    NSString *dateString = @"";
+    
+    switch (weekInteger) {
+        case 1:
+            dateString = [NSString stringWithFormat:@"Sun"];
+            break;
+        case 2:
+            dateString = [NSString stringWithFormat:@"Mon"];
+            break;
+        case 3:
+            dateString = [NSString stringWithFormat:@"Tue"];
+            break;
+        case 4:
+            dateString = [NSString stringWithFormat:@"Wed"];
+            break;
+        case 5:
+            dateString = [NSString stringWithFormat:@"Thu"];
+            break;
+        case 6:
+            dateString = [NSString stringWithFormat:@"Fri"];
+            break;
+        case 7:
+            dateString = [NSString stringWithFormat:@"Sat"];
+            break;
+            
+        default:
+            break;
+    }
+    return dateString;
+    
 }
+
+
 
 
 #pragma mark - nscode delegate

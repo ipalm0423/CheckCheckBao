@@ -45,11 +45,15 @@
     
     
     //image
-    UIImage *image = [[BaoController shareController] fetchImageFromAssetURL:baoImage.imageURL];
+    cell.imageView.layer.cornerRadius = 20;
+    cell.imageView.layer.masksToBounds = YES;
     
+    UIImage *image = [[BaoController shareController] fetchImageFromAssetURL:baoImage.imageURL];
     if (image) {
-        NSLog(@"have image url:%@", baoImage.imageURL);
+        
         cell.imageView.image = image;
+        
+        NSLog(@"have image url:%@", baoImage.imageURL);
         
     }else {
         NSLog(@"no image");

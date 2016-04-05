@@ -31,9 +31,6 @@
     baoController = [BaoController shareController];
     baoController.delegateBaoController = self;
     
-    //setup
-    [self setupAllSummaryArray];
-    
     //collection view
     self.tableView.estimatedRowHeight = 200;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -74,8 +71,16 @@
 }
 
 -(void)setupUnPriceArray{
-    [baoController updateUnPriceBaoImageArray];
-    unPriceBaoAlbum = baoController.unPriceBaoAlbum;
+    [baoController updateUnPriceBaoImageArray];//baoController
+    if (baoController.unPriceBaoAlbum) {
+        NSLog(@"have album");
+        NSLog(@"un price array:%li", baoController.unPriceBaoAlbum.baoImages.count);
+        unPriceBaoAlbum = baoController.unPriceBaoAlbum;
+    }else {
+        NSLog(@"dont have album");
+    }
+    
+    
     
     NSLog(@"un Price image count: %li", unPriceBaoAlbum.baoImages.count);
 }
@@ -172,9 +177,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0 && unPriceBaoAlbum.baoImages.count > 0) {
-        return 60;
+        return 40;
     }else if (section > 0 && monthlyBaoAlbumArray.count > 0) {
-        return 60;
+        return 40;
     }
     
     
@@ -192,8 +197,8 @@
     
     if (section == 0) {
         baoAlbum = unPriceBaoAlbum;
-        cell.labelTime.text = @"These bills don't have price";
-        cell.labelSum.text = [NSString stringWithFormat:@"%li pcs", unPriceBaoAlbum.baoImages.count];
+        cell.labelTime.text = @"These checks don't have price";
+        cell.labelSum.text = [NSString stringWithFormat:@"%li", unPriceBaoAlbum.baoImages.count];
     }else{//monthly array count
         baoAlbum = [monthlyBaoAlbumArray objectAtIndex:(section-1)];
         cell.labelSum.text = [baoAlbum getStringSumPrice];
