@@ -393,6 +393,19 @@
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHg-rj-Aia">
+                                                                        <rect key="frame" x="110" y="15" width="30" height="30"/>
+                                                                        <animations/>
+                                                                        <color key="backgroundColor" red="0.81960784310000001" green="0.30196078430000001" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="30" id="BCD-DN-dok"/>
+                                                                            <constraint firstAttribute="height" constant="30" id="aLg-aP-FAO"/>
+                                                                        </constraints>
+                                                                        <state key="normal" image="iconMinus"/>
+                                                                        <connections>
+                                                                            <action selector="buttonDeleteTouch:" destination="SeZ-iC-9di" eventType="touchUpInside" id="xt9-2l-Q4S"/>
+                                                                        </connections>
+                                                                    </button>
                                                                 </subviews>
                                                                 <animations/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -400,6 +413,7 @@
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="uaF-89-RoG" secondAttribute="trailing" id="5tE-5X-a0t"/>
+                                                                <constraint firstAttribute="trailing" secondItem="WHg-rj-Aia" secondAttribute="trailing" id="8uH-LJ-6dS"/>
                                                                 <constraint firstItem="uaF-89-RoG" firstAttribute="leading" secondItem="paX-Kl-FXQ" secondAttribute="leading" id="8vc-Wa-IPW"/>
                                                                 <constraint firstItem="uaF-89-RoG" firstAttribute="top" secondItem="paX-Kl-FXQ" secondAttribute="top" constant="25" id="AQW-mb-khC"/>
                                                                 <constraint firstItem="h2L-q4-Qo1" firstAttribute="trailing" secondItem="uaF-89-RoG" secondAttribute="trailing" id="CDm-vb-iu5"/>
@@ -409,15 +423,18 @@
                                                                 <constraint firstItem="1PP-qU-PBI" firstAttribute="top" secondItem="paX-Kl-FXQ" secondAttribute="top" id="M6f-vP-COj"/>
                                                                 <constraint firstItem="uaF-89-RoG" firstAttribute="centerY" secondItem="paX-Kl-FXQ" secondAttribute="centerY" id="MdY-lZ-HMF"/>
                                                                 <constraint firstItem="uaF-89-RoG" firstAttribute="centerX" secondItem="paX-Kl-FXQ" secondAttribute="centerX" id="Qhy-If-Jkx"/>
+                                                                <constraint firstItem="WHg-rj-Aia" firstAttribute="top" secondItem="paX-Kl-FXQ" secondAttribute="top" id="S6k-25-5oc"/>
                                                                 <constraint firstItem="1PP-qU-PBI" firstAttribute="centerY" secondItem="paX-Kl-FXQ" secondAttribute="centerY" id="VYr-80-LnV"/>
                                                                 <constraint firstItem="h2L-q4-Qo1" firstAttribute="top" secondItem="paX-Kl-FXQ" secondAttribute="top" id="cLw-wS-kXQ"/>
                                                                 <constraint firstItem="1PP-qU-PBI" firstAttribute="centerX" secondItem="paX-Kl-FXQ" secondAttribute="centerX" id="fkT-aP-RSO"/>
                                                                 <constraint firstAttribute="bottom" secondItem="h2L-q4-Qo1" secondAttribute="bottom" id="ioB-Hy-Fha"/>
                                                                 <constraint firstItem="uaF-89-RoG" firstAttribute="top" secondItem="1PP-qU-PBI" secondAttribute="bottom" id="jte-0w-ACT"/>
+                                                                <constraint firstItem="WHg-rj-Aia" firstAttribute="trailing" secondItem="uaF-89-RoG" secondAttribute="trailing" constant="10" id="lOT-X0-YCu"/>
                                                                 <constraint firstAttribute="trailing" secondItem="1PP-qU-PBI" secondAttribute="trailing" id="nfL-RP-EKV"/>
                                                                 <constraint firstAttribute="bottom" secondItem="uaF-89-RoG" secondAttribute="bottom" id="rsb-eU-lB9"/>
                                                                 <constraint firstItem="h2L-q4-Qo1" firstAttribute="leading" secondItem="paX-Kl-FXQ" secondAttribute="leading" id="taw-wn-xEf"/>
                                                                 <constraint firstItem="uaF-89-RoG" firstAttribute="top" secondItem="paX-Kl-FXQ" secondAttribute="top" id="vXF-fW-HLo"/>
+                                                                <constraint firstItem="WHg-rj-Aia" firstAttribute="top" secondItem="uaF-89-RoG" secondAttribute="top" constant="-10" id="wzL-Br-WvY"/>
                                                                 <constraint firstItem="uaF-89-RoG" firstAttribute="top" secondItem="h2L-q4-Qo1" secondAttribute="bottom" id="yN7-yF-Tpy"/>
                                                                 <constraint firstItem="1PP-qU-PBI" firstAttribute="top" secondItem="paX-Kl-FXQ" secondAttribute="top" id="z2z-Zc-0wH"/>
                                                                 <constraint firstAttribute="trailing" secondItem="h2L-q4-Qo1" secondAttribute="trailing" id="zfH-5Y-9Pd"/>
@@ -434,12 +451,15 @@
                                                                     <exclude reference="rsb-eU-lB9"/>
                                                                     <exclude reference="vXF-fW-HLo"/>
                                                                     <exclude reference="yN7-yF-Tpy"/>
+                                                                    <exclude reference="8uH-LJ-6dS"/>
+                                                                    <exclude reference="S6k-25-5oc"/>
                                                                     <exclude reference="CYW-kW-U1G"/>
                                                                     <exclude reference="cLw-wS-kXQ"/>
                                                                     <exclude reference="zfH-5Y-9Pd"/>
                                                                 </mask>
                                                             </variation>
                                                             <connections>
+                                                                <outlet property="buttonDelete" destination="WHg-rj-Aia" id="ZTl-pf-Rmp"/>
                                                                 <outlet property="imageView" destination="uaF-89-RoG" id="uzJ-oU-s6i"/>
                                                                 <outlet property="labelPrice" destination="1PP-qU-PBI" id="zwp-EI-dsb"/>
                                                                 <outlet property="labelTime" destination="h2L-q4-Qo1" id="I46-GT-1eO"/>
@@ -597,4 +617,7 @@
             <point key="canvasLocation" x="1647" y="-1614"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="iconMinus" width="375" height="375"/>
+    </resources>
 </document>

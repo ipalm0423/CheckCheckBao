@@ -20,5 +20,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *labelTime;
 
+@property (strong, nonatomic) IBOutlet UIButton *buttonDelete;
 
 @end

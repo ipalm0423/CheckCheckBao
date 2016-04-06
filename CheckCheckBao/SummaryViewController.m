@@ -21,6 +21,8 @@
     NSMutableArray *monthlyBaoAlbumArray;
     BaoAlbum *unPriceBaoAlbum;
     
+    BOOL isDeleteActive;
+    
 }
 
 - (void)viewDidLoad {
@@ -31,12 +33,19 @@
     baoController = [BaoController shareController];
     baoController.delegateBaoController = self;
     
-    //collection view
+    //table view
     self.tableView.estimatedRowHeight = 200;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView reloadData];
+    
+    //long press
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                            action:@selector(activateDeletionMode:)];
+    //longPress.delegate = self;
+    [self.tableView addGestureRecognizer:longPress];
+    isDeleteActive = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,6 +92,21 @@
     
     
     NSLog(@"un Price image count: %li", unPriceBaoAlbum.baoImages.count);
+}
+
+-(NSMutableArray*)getUIImageByBaoImagesArray:(NSMutableArray*)baoImages{
+    NSMutableArray *newImages = [NSMutableArray new];
+    for (BaoImage *baoImage in baoImages) {
+        UIImage *image = [baoController fetchImageFromAssetURL:baoImage.imageURL];
+        if (image) {
+            [newImages addObject:image];
+        }else{
+            UIImage *noImage = [[UIImage alloc]init];
+            [newImages addObject:noImage];
+        }
+        
+    }
+    return newImages;
 }
 
 //deprecate
@@ -168,6 +192,8 @@
     
     //collection view delegate
     cell.baoImages = baoImages;
+    cell.uiImageArray = [self getUIImageByBaoImagesArray:baoImages];
+    cell.isDeleteActive = isDeleteActive;
     cell.collectionView.delegate = cell;
     cell.collectionView.dataSource = cell;
     [cell.collectionView reloadData];
@@ -210,7 +236,17 @@
 }
 
 
+#pragma mark - delete
 
+- (void)activateDeletionMode:(UILongPressGestureRecognizer *)sender{
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        isDeleteActive = !isDeleteActive;
+        [self.tableView reloadData];
+        NSLog(@"is delete active: %@", isDeleteActive ? @"yes":@"no");
+    }
+    
+    
+}
 
 /*
 #pragma mark - Navigation

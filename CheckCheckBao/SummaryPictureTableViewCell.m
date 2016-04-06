@@ -10,10 +10,18 @@
 #import "ImagePriceCollectionViewCell.h"
 
 
-@implementation SummaryPictureTableViewCell
+@implementation SummaryPictureTableViewCell{
+    
+    BaoController *baoController;
+}
+
+@synthesize uiImageArray;
+@synthesize baoImages;
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -21,6 +29,8 @@
 
     // Configure the view for the selected state
 }
+
+
 
 
 #pragma mark - collection view delegate
@@ -48,7 +58,7 @@
     cell.imageView.layer.cornerRadius = 20;
     cell.imageView.layer.masksToBounds = YES;
     
-    UIImage *image = [[BaoController shareController] fetchImageFromAssetURL:baoImage.imageURL];
+    UIImage *image = [self.uiImageArray objectAtIndex:indexPath.row];
     if (image) {
         
         cell.imageView.image = image;
@@ -62,6 +72,16 @@
         
     }
     
+    cell.buttonDelete.layer.cornerRadius = cell.buttonDelete.frame.size.height / 2;
+    cell.buttonDelete.layer.masksToBounds = YES;
+    
+    if (self.isDeleteActive) {
+        cell.buttonDelete.alpha = 1;
+        
+    }else{
+        cell.buttonDelete.alpha = 0;
+    }
+    
     
     return cell;
 }
@@ -69,6 +89,30 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"image touch at row:%li", indexPath.row);
 }
+
+
+
+#pragma mark - button
+
+- (IBAction)buttonDeleteTouch:(UIButton *)sender {
+    if (self.isDeleteActive) {
+        
+        CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.collectionView];
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:buttonPosition];
+        
+        //controller
+        [baoController deleteBaoImage:[self.baoImages objectAtIndex:indexPath.row]];
+        
+        //colection view
+        [self.baoImages removeObjectAtIndex:indexPath.row];
+        [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+        [self.collectionView reloadData];
+        
+    }
+    
+}
+
+
 
 
 /*

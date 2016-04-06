@@ -199,7 +199,16 @@ static BaoController *shareBaoController = nil;
     self.unPriceBaoAlbum = newbaoAlbum;
 }
 
-
+#pragma mark - bao image
+-(void)deleteBaoImage:(BaoImage *)image{
+    for (BaoAlbum *album in self.baoAlbums) {
+        if ([album haveBaoImageInAlbum:image]) {
+            [album.baoImages removeObject:image];
+            break;
+        }
+    }
+    [self saveAllChange];
+}
 
 #pragma mark - PHAsset
 -(PHAssetCollection*)fetchPHAssetAlbum:(NSString*)name {

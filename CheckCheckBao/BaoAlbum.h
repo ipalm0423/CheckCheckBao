@@ -27,6 +27,7 @@
 //image
 -(void)sortImagesByDate;
 -(void)addNewBaoImage:(BaoImage*)baoImage;
+-(BOOL)haveBaoImageInAlbum:(BaoImage*)baoImage;
 
 //accounting
 -(void)updateSumPrice;

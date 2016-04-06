@@ -33,6 +33,8 @@
 //save / load
 -(BaoAlbum*) findBaoAlbumFromAlbumsByDate:(NSDate*)date;
 -(void)saveImageToAlbum:(UIImage*)image byDate:(NSDate*)date price:(float)price;
+//delete
+-(void)deleteBaoImage:(BaoImage*)image;
 
 //calculate
 -(void)updateUnPriceBaoImageArray;

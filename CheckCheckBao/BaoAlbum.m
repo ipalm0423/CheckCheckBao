@@ -82,7 +82,15 @@
     [self updateSumPrice];
 }
 
-
+-(BOOL)haveBaoImageInAlbum:(BaoImage *)baoImage{
+    for (BaoImage *image in self.baoImages) {
+        if (image == baoImage) {
+            return YES;
+            
+        }
+    }
+    return NO;
+}
 #pragma mark - calculation
 -(void)updateSumPrice {
     float newSum = 0;
