@@ -8,13 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SummaryPictureTableViewCell : UITableViewCell<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface SummaryPictureTableViewCell : UITableViewCell
 
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
-@property NSMutableArray *baoImages;
-@property NSMutableArray *uiImageArray;
-@property BOOL isDeleteActive;
 
 
 @end

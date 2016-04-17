@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class BaoImage;
 
@@ -28,5 +29,9 @@
 -(NSString*)getStringPrice;
 -(NSString*)getStringTime;
 
+//image
+-(UIImage*)getUIImageBySize:(CGSize)targetSize;
+-(UIImage*)getSmallSizeUIImage;
+-(UIImage*)getFullSizeImage;
 
 @end

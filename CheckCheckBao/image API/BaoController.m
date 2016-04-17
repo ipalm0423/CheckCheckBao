@@ -274,22 +274,7 @@ static BaoController *shareBaoController = nil;
     
 }
 
--(UIImage*)fetchImageFromAssetURL:(NSURL*)url{
-    if (url) {
-        __block UIImage *image = [[UIImage alloc]init];
-        NSLog(@"fetch image");
-        PHAsset *asset = [PHAsset fetchAssetsWithALAssetURLs:@[url] options:nil].firstObject;
-        CGSize size = CGSizeMake(200, 200);
-        PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
-        option.resizeMode = PHImageRequestOptionsResizeModeNone;
-        
-        [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFit options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-            image = result;
-        }];
-        return image;
-    }
-    return nil;
-}
+
 
 
 

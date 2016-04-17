@@ -7,6 +7,7 @@
 //
 
 #import "BaoImage.h"
+#import <Photos/Photos.h>
 
 @implementation BaoImage
 
@@ -103,7 +104,74 @@
     
 }
 
+#pragma mark - image
+-(UIImage*)getUIImageBySize:(CGSize)targetSize{
+    if (self.imageURL) {
+        __block UIImage *image = [[UIImage alloc]init];
+        NSLog(@"fetch image");
+        PHAsset *asset = [PHAsset fetchAssetsWithALAssetURLs:@[self.imageURL] options:nil].firstObject;
+        CGSize size = targetSize;
+        PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
+        option.resizeMode = PHImageRequestOptionsResizeModeNone;
+        
+        [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFit options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+            image = result;
+        }];
+        return image;
+    }
+    return nil;
+}
+-(UIImage*)getSmallSizeUIImage{
+    if (self.imageURL) {
+        PHImageManager *manager = [PHImageManager defaultManager];
+        PHAsset *asset = [PHAsset fetchAssetsWithALAssetURLs:@[self.imageURL] options:nil].firstObject;
+        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+        options.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
+        options.synchronous = YES;
+        options.networkAccessAllowed = YES;
+        options.progressHandler = ^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
+            NSLog(@"%f", progress);
+        };
+        
+        __block UIImage *image = [[UIImage alloc]init];
+        
+        [manager requestImageDataForAsset:asset
+                                  options:options
+                            resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info)
+         {
+             image = [UIImage imageWithData:imageData];
+             
+         }];
+        return image;
+    }
+    return nil;
+}
 
+-(UIImage*)getFullSizeImage{
+    if (self.imageURL) {
+        PHImageManager *manager = [PHImageManager defaultManager];
+        PHAsset *asset = [PHAsset fetchAssetsWithALAssetURLs:@[self.imageURL] options:nil].firstObject;
+        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+        options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+        options.synchronous = YES;
+        options.networkAccessAllowed = YES;
+        options.progressHandler = ^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
+            NSLog(@"%f", progress);
+        };
+        
+        __block UIImage *image = [[UIImage alloc]init];
+        
+        [manager requestImageDataForAsset:asset
+                                  options:options
+                            resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info)
+         {
+             image = [UIImage imageWithData:imageData];
+
+         }];
+        return image;
+    }
+    return nil;
+}
 
 
 #pragma mark - nscode delegate

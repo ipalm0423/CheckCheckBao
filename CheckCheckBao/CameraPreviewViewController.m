@@ -36,9 +36,12 @@
 
 -(void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+    self.tabBarController.tabBar.hidden = YES;
+    self.navigationController.navigationBarHidden = YES;
     [self.captureManager startPreviewCapture: self.view];
     [self.view bringSubviewToFront:self.calculatorViewController.view];
+    [self.view bringSubviewToFront:self.buttonLoad];
+    [self.view bringSubviewToFront:self.buttonSum];
     
 }
 
@@ -91,6 +94,19 @@
 }
 
 
+#pragma mark - button
+
+- (IBAction)buttonSumTouch:(UIButton *)sender {
+    self.tabBarController.selectedIndex = 1;
+    
+}
+
+
+- (IBAction)buttonLoadImageTouch:(UIButton *)sender {
+    
+    
+    
+}
 
 
 @end

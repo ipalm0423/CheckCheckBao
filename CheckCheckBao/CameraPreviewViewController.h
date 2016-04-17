@@ -17,5 +17,9 @@
 @property CaptureSessionManager *captureManager;
 @property CalculatorViewController *calculatorViewController;
 
+@property (strong, nonatomic) IBOutlet UIButton *buttonSum;
+
+@property (strong, nonatomic) IBOutlet UIButton *buttonLoad;
+
 
 @end

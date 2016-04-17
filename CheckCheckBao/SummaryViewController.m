@@ -9,6 +9,7 @@
 #import "SummaryViewController.h"
 #import "SummarySectionMonthlyTableViewCell.h"
 #import "SummaryPictureTableViewCell.h"
+#import "DetailImageViewController.h"
 
 
 @interface SummaryViewController ()
@@ -38,6 +39,7 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [UIView new];
     [self.tableView reloadData];
     
     //long press
@@ -55,6 +57,8 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
+    self.tabBarController.tabBar.hidden = YES;
+    self.navigationController.navigationBarHidden = NO;
     
     [self setupAllSummaryArray];
     [self.tableView reloadData];
@@ -94,20 +98,7 @@
     NSLog(@"un Price image count: %li", unPriceBaoAlbum.baoImages.count);
 }
 
--(NSMutableArray*)getUIImageByBaoImagesArray:(NSMutableArray*)baoImages{
-    NSMutableArray *newImages = [NSMutableArray new];
-    for (BaoImage *baoImage in baoImages) {
-        UIImage *image = [baoController fetchImageFromAssetURL:baoImage.imageURL];
-        if (image) {
-            [newImages addObject:image];
-        }else{
-            UIImage *noImage = [[UIImage alloc]init];
-            [newImages addObject:noImage];
-        }
-        
-    }
-    return newImages;
-}
+
 
 //deprecate
 /*
@@ -177,25 +168,43 @@
     return 0;
 }
 
+-(UITableViewCell *)tableView2delete:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    SummaryPictureTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SummaryPicture" forIndexPath:indexPath];
+    
+    
+    //collection view delegate
+    cell.collectionView.tag = indexPath.section;
+    cell.collectionView.delegate = self;
+    cell.collectionView.dataSource = self;
+    [cell.collectionView reloadData];
+    
+    return cell;
+}
+
+-(UITableViewCell *)tableView2delete22:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    SummaryPictureTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SummaryPicture" forIndexPath:indexPath];
+    
+    
+    //collection view delegate
+    cell.collectionView.tag = indexPath.section;
+    cell.collectionView.delegate = self;
+    cell.collectionView.dataSource = self;
+    [cell.collectionView reloadData];
+    
+    return cell;
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     SummaryPictureTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SummaryPicture" forIndexPath:indexPath];
-    NSMutableArray *baoImages = nil;
     
-    //data
-    if (indexPath.section == 0) {
-        baoImages = unPriceBaoAlbum.baoImages;
-    }else{//monthly images
-        BaoAlbum *baoAlbum = [monthlyBaoAlbumArray objectAtIndex:(indexPath.section-1)];
-        baoImages = baoAlbum.baoImages;
-    }
     
     //collection view delegate
-    cell.baoImages = baoImages;
-    cell.uiImageArray = [self getUIImageByBaoImagesArray:baoImages];
-    cell.isDeleteActive = isDeleteActive;
-    cell.collectionView.delegate = cell;
-    cell.collectionView.dataSource = cell;
+    cell.collectionView.tag = indexPath.section;
+    cell.collectionView.delegate = self;
+    cell.collectionView.dataSource = self;
     [cell.collectionView reloadData];
     
     return cell;
@@ -236,6 +245,105 @@
 }
 
 
+
+
+#pragma mark - collection view delegate
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    NSInteger index = collectionView.tag;
+    if (index == 0) {//section 0 = unPrice
+        return unPriceBaoAlbum.baoImages.count;
+    }else{
+        BaoAlbum *baoAlbum = [monthlyBaoAlbumArray objectAtIndex:index - 1];
+        return baoAlbum.baoImages.count;
+    }
+}
+
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    BaoImage *baoImage = nil;
+    NSInteger albumIndex = collectionView.tag;
+    
+    if (albumIndex == 0) {
+        baoImage = [unPriceBaoAlbum.baoImages objectAtIndex:indexPath.row];
+    }else{
+        BaoAlbum *baoAlbum = [monthlyBaoAlbumArray objectAtIndex:albumIndex - 1];
+        baoImage = [baoAlbum.baoImages objectAtIndex:indexPath.row];
+    }
+    
+    
+    ImagePriceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"priceCollectionCell" forIndexPath:indexPath];
+    if (baoImage) {
+        
+        //label
+        cell.labelPrice.text = [baoImage getStringPrice];
+        cell.labelTime.text = [baoImage getStringTime];
+        
+        
+        //image
+        cell.imageView.layer.cornerRadius = 20;
+        cell.imageView.layer.masksToBounds = YES;
+        
+        UIImage *image = [baoImage getSmallSizeUIImage];
+        if (image) {
+            
+            cell.imageView.image = image;
+            cell.imageView.alpha = 1;
+            NSLog(@"have image url:%@", baoImage.imageURL);
+            
+        }else {
+            NSLog(@"no image");
+            cell.imageView.image = nil;
+            [cell.imageView setBackgroundColor:[UIColor grayColor]];
+            cell.imageView.alpha = 0.5;
+            
+        }
+        
+        cell.buttonDelete.tag = indexPath.row;
+        cell.buttonDelete.layer.cornerRadius = cell.buttonDelete.frame.size.height / 2;
+        cell.buttonDelete.layer.masksToBounds = YES;
+        
+        if (isDeleteActive) {
+            cell.buttonDelete.alpha = 1;
+            
+        }else{
+            cell.buttonDelete.alpha = 0;
+        }
+    }
+    
+    
+    
+    return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"image touch at row:%li", indexPath.row);
+    BaoImage *selectImage = nil;
+    NSInteger albumIndex = collectionView.tag;
+    
+    if (albumIndex == 0) {
+        selectImage = [unPriceBaoAlbum.baoImages objectAtIndex:indexPath.row];
+    }else{
+        BaoAlbum *baoAlbum = [monthlyBaoAlbumArray objectAtIndex:albumIndex - 1];
+        selectImage = [baoAlbum.baoImages objectAtIndex:indexPath.row];
+    }
+    
+    
+    if (selectImage) {
+        DetailImageViewController *VC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailImageView"];
+        
+        VC.baoImage = selectImage;
+        
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+    
+}
+
+
 #pragma mark - delete
 
 - (void)activateDeletionMode:(UILongPressGestureRecognizer *)sender{
@@ -248,14 +356,50 @@
     
 }
 
-/*
+- (IBAction)buttonDeleteTouch:(UIButton *)sender {
+    if (isDeleteActive) {
+        //table row
+        CGPoint buttonTablePosition = [sender convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *tableIndexPath = [self.tableView indexPathForRowAtPoint:buttonTablePosition];
+        
+        NSInteger imageIndex = sender.tag;
+        
+        //delete
+        if (tableIndexPath.section == 0) {
+            BaoImage *deleteImage = [unPriceBaoAlbum.baoImages objectAtIndex:imageIndex];
+            
+            [unPriceBaoAlbum.baoImages removeObjectAtIndex:imageIndex];
+            [baoController deleteBaoImage:deleteImage];
+        }else{
+            BaoAlbum *baoAlbum = [monthlyBaoAlbumArray objectAtIndex:tableIndexPath.section - 1];
+            BaoImage *deleteImage = [baoAlbum.baoImages objectAtIndex:imageIndex];
+            
+            [baoController deleteBaoImage:deleteImage];
+            [baoAlbum.baoImages removeObjectAtIndex:imageIndex];
+        }
+        
+        [baoController saveAllChange];
+        
+        //reload view
+        [self.tableView beginUpdates];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:tableIndexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView endUpdates];
+        
+        
+        
+    }
+}
+
+- (IBAction)buttonBackToCameraTouch:(UIBarButtonItem *)sender {
+    
+    self.tabBarController.selectedIndex = 0;
+    
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
+
 
 @end

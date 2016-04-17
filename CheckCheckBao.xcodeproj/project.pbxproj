@@ -15,6 +15,7 @@
 		AC1C2CEC1C9534B900DE05E1 /* BaoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1C2CEB1C9534B900DE05E1 /* BaoAlbum.m */; };
 		AC1E248D1C9D0C7800D495E7 /* SummaryPictureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1E248C1C9D0C7800D495E7 /* SummaryPictureTableViewCell.m */; };
 		AC1E24911C9D13C500D495E7 /* SummarySectionMonthlyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1E24901C9D13C500D495E7 /* SummarySectionMonthlyTableViewCell.m */; };
+		AC3A92AC1CC223C400050315 /* DetailImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3A92AB1CC223C400050315 /* DetailImageViewController.m */; };
 		AC4314971C8ACA3800C2D391 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4314961C8ACA3800C2D391 /* main.m */; };
 		AC43149A1C8ACA3800C2D391 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4314991C8ACA3800C2D391 /* AppDelegate.m */; };
 		AC43149D1C8ACA3800C2D391 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC43149C1C8ACA3800C2D391 /* ViewController.m */; };
@@ -64,6 +65,8 @@
 		AC1E248C1C9D0C7800D495E7 /* SummaryPictureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryPictureTableViewCell.m; sourceTree = "<group>"; };
 		AC1E248F1C9D13C500D495E7 /* SummarySectionMonthlyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummarySectionMonthlyTableViewCell.h; sourceTree = "<group>"; };
 		AC1E24901C9D13C500D495E7 /* SummarySectionMonthlyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummarySectionMonthlyTableViewCell.m; sourceTree = "<group>"; };
+		AC3A92AA1CC223C400050315 /* DetailImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailImageViewController.h; sourceTree = "<group>"; };
+		AC3A92AB1CC223C400050315 /* DetailImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailImageViewController.m; sourceTree = "<group>"; };
 		AC4314921C8ACA3700C2D391 /* CheckCheckBao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheckCheckBao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC4314961C8ACA3800C2D391 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AC4314981C8ACA3800C2D391 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 				AC1E24871C9D0BD900D495E7 /* cell */,
 				AC1C2CDD1C952A4100DE05E1 /* SummaryViewController.h */,
 				AC1C2CDE1C952A4100DE05E1 /* SummaryViewController.m */,
+				AC3A92AA1CC223C400050315 /* DetailImageViewController.h */,
+				AC3A92AB1CC223C400050315 /* DetailImageViewController.m */,
 			);
 			name = "Collection Summary View";
 			sourceTree = "<group>";
@@ -180,9 +185,9 @@
 			isa = PBXGroup;
 			children = (
 				AC1E248E1C9D0CC400D495E7 /* collectionView cell */,
-				AC1E248B1C9D0C7800D495E7 /* SummaryPictureTableViewCell.h */,
 				AC1E248F1C9D13C500D495E7 /* SummarySectionMonthlyTableViewCell.h */,
 				AC1E24901C9D13C500D495E7 /* SummarySectionMonthlyTableViewCell.m */,
+				AC1E248B1C9D0C7800D495E7 /* SummaryPictureTableViewCell.h */,
 				AC1E248C1C9D0C7800D495E7 /* SummaryPictureTableViewCell.m */,
 			);
 			name = cell;
@@ -355,6 +360,7 @@
 				AC1C2CDF1C952A4100DE05E1 /* SummaryViewController.m in Sources */,
 				AC43149A1C8ACA3800C2D391 /* AppDelegate.m in Sources */,
 				AC4314971C8ACA3800C2D391 /* main.m in Sources */,
+				AC3A92AC1CC223C400050315 /* DetailImageViewController.m in Sources */,
 				AC4314D81C8AD29300C2D391 /* CameraOverlayViewController.m in Sources */,
 				AC4314E51C8B2D2200C2D391 /* CalculatorViewController.m in Sources */,
 				AC1E248D1C9D0C7800D495E7 /* SummaryPictureTableViewCell.m in Sources */,
