@@ -12,7 +12,7 @@
 #import "CalculatorViewController.h"
 #import "BaoController.h"
 
-@interface CameraPreviewViewController : UIViewController<CalculatorDelegate, CaptureSessionManagerDelegate>
+@interface CameraPreviewViewController : UIViewController<CalculatorDelegate, CaptureSessionManagerDelegate, UIImagePickerControllerDelegate>
 
 @property CaptureSessionManager *captureManager;
 @property CalculatorViewController *calculatorViewController;
@@ -21,5 +21,6 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *buttonLoad;
 
+@property (strong, nonatomic) IBOutlet UIButton *buttonCapture;
 
 @end

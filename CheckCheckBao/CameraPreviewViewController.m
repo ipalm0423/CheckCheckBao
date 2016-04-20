@@ -13,6 +13,10 @@
 @implementation CameraPreviewViewController {
     BaoController *baoController;
     float imagePrice;
+    
+    //picker view
+    NSURL *pickerURL;
+    UIImageView *pickerImageView;
 }
 
 @synthesize captureManager;
@@ -27,46 +31,33 @@
     
     //calculator view
     self.calculatorViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Calculator"];
-    self.calculatorViewController.delegate = self;
+    self.calculatorViewController.delegateCalculator = self;
     [self.calculatorViewController addSubviewOnBottom:self.view];
     
     //bao controller
     baoController = [BaoController shareController];
 }
 
--(void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+-(void)viewWillAppear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = YES;
     self.navigationController.navigationBarHidden = YES;
     [self.captureManager startPreviewCapture: self.view];
+    
     [self.view bringSubviewToFront:self.calculatorViewController.view];
     [self.view bringSubviewToFront:self.buttonLoad];
     [self.view bringSubviewToFront:self.buttonSum];
+    [self.view bringSubviewToFront:self.buttonCapture];
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
     
 }
 
 
 
-#pragma mark - calculator delegate
--(void)didEndCalculate:(CalculatorViewController *)calculator sum:(float)sum{
-    NSLog(@"get sum from calculator: %f", sum);
-    [self.captureManager captureStillPicture];
-    imagePrice = sum;
-}
 
-
-#pragma mark - capture manager delegate
--(void)didCaptureStillImage:(CaptureSessionManager *)sessionManager imageData:(UIImage *)image{
-    NSLog(@"capture image");
-    //animte
-    [self animationCaptureImage:image];
-    
-    //save to bao album
-    [baoController saveImageToAlbum:image byDate:[NSDate date] price:imagePrice];
-    
-    //clear price
-    [self.calculatorViewController returnNumberToZero];
-}
 
 
 #pragma mark - animation
@@ -93,8 +84,37 @@
     }];
 }
 
+-(void)animateRemovePickerImage{
+    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        pickerImageView.alpha = 0;
+    } completion:^(BOOL finished) {
+        [pickerImageView removeFromSuperview];
+        pickerImageView = nil;
+        pickerURL = nil;
+        [self.buttonLoad setTitle:@"load from album" forState:UIControlStateNormal];
+    }];
+}
+
 
 #pragma mark - button
+- (IBAction)buttonCaptureTouch:(UIButton *)sender {
+    NSLog(@"button capture touch");
+    if (pickerImageView) {//save it
+        //save to bao album
+        [baoController saveImageToAlbum:pickerImageView.image byDate:[NSDate date] price:imagePrice];
+        
+        //clear price
+        [self.calculatorViewController returnNumberToZero];
+        
+        //animte
+        [self animateRemovePickerImage];
+        
+    }else{//capture by camera
+        [self.captureManager captureStillPicture];
+    }
+    
+    
+}
 
 - (IBAction)buttonSumTouch:(UIButton *)sender {
     self.tabBarController.selectedIndex = 1;
@@ -103,10 +123,79 @@
 
 
 - (IBAction)buttonLoadImageTouch:(UIButton *)sender {
+    if (pickerImageView) {//have image, remove it
+        [self animateRemovePickerImage];
+        
+        [self.calculatorViewController returnNumberToZero];
+        
+    }else{//create picker
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        
+        //設定圖片來源為圖庫
+        picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+        
+        //以動畫方式顯示圖庫
+        [self presentViewController:picker animated:YES completion:nil];
+        
+        //clear price
+        [self.calculatorViewController returnNumberToZero];
+    }
     
+     
+}
+
+
+#pragma mark - calculator delegate
+-(void)didChangeCalculatorValue:(float)value{
+    NSLog(@"get sum from calculator: %f", value);
     
+    imagePrice = value;
+}
+
+
+
+#pragma mark - capture manager delegate
+-(void)didCaptureStillImage:(CaptureSessionManager *)sessionManager imageData:(UIImage *)image{
+    NSLog(@"capture image");
+    //animte
+    [self animationCaptureImage:image];
+    
+    //save to bao album
+    [baoController saveImageToAlbum:image byDate:[NSDate date] price:imagePrice];
+    
+    //clear price
+    [self.calculatorViewController returnNumberToZero];
+}
+
+
+#pragma mark - image picker delegate
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    
+    // AND do whatever you want with it, (NSDictionary *)info is fine now
+    UIImage *pickImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    NSURL *imageUrl = [info objectForKey:UIImagePickerControllerReferenceURL];
+    
+    pickerImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
+    pickerImageView.contentMode = UIViewContentModeScaleToFill;
+    pickerImageView.image = pickImage;
+    
+    //set
+    [self.view addSubview:pickerImageView];
+    pickerURL = imageUrl;
+    
+    //已動畫方式返回先前畫面
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    [self.buttonLoad setTitle:@"remove" forState:UIControlStateNormal];
     
 }
+
 
 
 @end

@@ -21,6 +21,11 @@
 
 @implementation CalculatorViewController
 
+
+@synthesize delegateCalculator;
+@synthesize totalNumber;
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -48,6 +53,7 @@
 -(void)returnNumberToZero{
     self.totalNumber = 0;
     self.calculateNumberLabel.text = @"0";
+    [self sendValueToDelegate];
 }
 
 
@@ -66,6 +72,8 @@
         
     }
     
+    [self sendValueToDelegate];
+    
 }
 
 - (IBAction)pointButtonTouch:(id)sender {
@@ -74,7 +82,7 @@
         
     }
     
-    
+    [self sendValueToDelegate];
     
 }
 
@@ -86,7 +94,7 @@
         self.calculateNumberLabel.text = @"1";
     }
     
-    
+    [self sendValueToDelegate];
     
 }
 
@@ -98,7 +106,7 @@
         self.calculateNumberLabel.text = @"2";
     }
     
-    
+    [self sendValueToDelegate];
 }
 
 - (IBAction)threeButtonTouch:(id)sender {
@@ -109,7 +117,7 @@
         self.calculateNumberLabel.text = @"3";
     }
     
-    
+    [self sendValueToDelegate];
 }
 
 - (IBAction)fourButtonTouch:(id)sender {
@@ -120,7 +128,7 @@
         self.calculateNumberLabel.text = @"4";
     }
     
-    
+    [self sendValueToDelegate];
 }
 
 - (IBAction)fiveButtonTouch:(id)sender {
@@ -131,7 +139,7 @@
         self.calculateNumberLabel.text = @"5";
     }
     
-    
+    [self sendValueToDelegate];
 }
 
 - (IBAction)sixButtonTouch:(id)sender {
@@ -142,7 +150,7 @@
         self.calculateNumberLabel.text = @"6";
     }
     
-    
+    [self sendValueToDelegate];
 }
 
 - (IBAction)sevenButtonTouch:(id)sender {
@@ -153,7 +161,7 @@
         self.calculateNumberLabel.text = @"7";
     }
     
-    
+    [self sendValueToDelegate];
 }
 
 - (IBAction)eightButtonTouch:(id)sender {
@@ -164,7 +172,7 @@
         self.calculateNumberLabel.text = @"8";
     }
     
-    
+    [self sendValueToDelegate];
 }
 
 - (IBAction)nineButtonTouch:(id)sender {
@@ -175,21 +183,24 @@
         self.calculateNumberLabel.text = @"9";
     }
     
-    
+    [self sendValueToDelegate];
 }
 
 - (IBAction)acButtonTouch:(id)sender {
     self.calculateNumberLabel.text = @"0";
+    [self sendValueToDelegate];
 }
 
-- (IBAction)doneButtonTouch:(id)sender {
+
+#pragma mark - calculate
+- (void)sendValueToDelegate {
     
     self.totalNumber = [self.calculateNumberLabel.text floatValue];
     NSLog(@"done button touch %f", self.totalNumber);
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didEndCalculate:sum:)]) {
-        [self.delegate didEndCalculate:self sum:self.totalNumber];
-    }
     
+    if (self.delegateCalculator && [self.delegateCalculator respondsToSelector:@selector(didChangeCalculatorValue:)]) {
+        [self.delegateCalculator didChangeCalculatorValue:self.totalNumber];
+    }
 }
 
 

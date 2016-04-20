@@ -54,7 +54,8 @@
 -(void) startPreviewCapture: (UIView *) previewView {
     
     self.previewLayer.frame = previewView.bounds;
-    [previewView.layer addSublayer:self.previewLayer];
+    [previewView.layer insertSublayer:self.previewLayer atIndex:0];
+    //[previewView.layer addSublayer:self.previewLayer];
     
     [self.avCaptureSession startRunning];
     

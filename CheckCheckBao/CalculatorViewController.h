@@ -13,15 +13,16 @@
 @protocol CalculatorDelegate <NSObject>
 
 @required
--(void)didEndCalculate:(CalculatorViewController *)calculator sum:(float)sum;
+-(void)didChangeCalculatorValue:(float)value;
+
 @optional
--(float)setSumNumber;
+
 
 @end
 
 @interface CalculatorViewController : UIViewController
 
-@property id<CalculatorDelegate> delegate;
+@property id<CalculatorDelegate> delegateCalculator;
 @property float totalNumber;
 -(void)addSubviewOnBottom:(UIView*)hostView;
 -(void)returnNumberToZero;
