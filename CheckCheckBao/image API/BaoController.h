@@ -32,7 +32,8 @@
 
 //save / load
 -(BaoAlbum*) findBaoAlbumFromAlbumsByDate:(NSDate*)date;
--(void)saveImageToAlbum:(UIImage*)image byDate:(NSDate*)date price:(float)price;
+-(void)saveImageToAlbum:(UIImage*)image byDate:(NSDate*)date price:(float)price note:(NSString*)note;
+-(void)saveImageToAlbumByAssetURL:(NSURL*)assetURL date:(NSDate*)date price:(float)price note:(NSString*)note;
 //delete
 -(void)deleteBaoImage:(BaoImage*)image;
 

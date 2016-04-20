@@ -13,7 +13,7 @@
 @implementation CameraPreviewViewController {
     BaoController *baoController;
     float imagePrice;
-    
+    NSString *note;
     //picker view
     NSURL *pickerURL;
     UIImageView *pickerImageView;
@@ -34,6 +34,11 @@
     self.calculatorViewController.delegateCalculator = self;
     [self.calculatorViewController addSubviewOnBottom:self.view];
     
+    //reset
+    [self.calculatorViewController returnNumberToZero];
+    note = @"";
+    imagePrice = 0;
+    
     //bao controller
     baoController = [BaoController shareController];
 }
@@ -42,11 +47,12 @@
     self.tabBarController.tabBar.hidden = YES;
     self.navigationController.navigationBarHidden = YES;
     [self.captureManager startPreviewCapture: self.view];
-    
+
     [self.view bringSubviewToFront:self.calculatorViewController.view];
     [self.view bringSubviewToFront:self.buttonLoad];
     [self.view bringSubviewToFront:self.buttonSum];
     [self.view bringSubviewToFront:self.buttonCapture];
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -91,6 +97,7 @@
         [pickerImageView removeFromSuperview];
         pickerImageView = nil;
         pickerURL = nil;
+        
         [self.buttonLoad setTitle:@"load from album" forState:UIControlStateNormal];
     }];
 }
@@ -101,10 +108,12 @@
     NSLog(@"button capture touch");
     if (pickerImageView) {//save it
         //save to bao album
-        [baoController saveImageToAlbum:pickerImageView.image byDate:[NSDate date] price:imagePrice];
+        [baoController saveImageToAlbumByAssetURL:pickerURL date:[NSDate date] price:imagePrice note:note];
         
-        //clear price
+        //re-set
         [self.calculatorViewController returnNumberToZero];
+        note = @"";
+        imagePrice = 0;
         
         //animte
         [self animateRemovePickerImage];
@@ -125,8 +134,10 @@
 - (IBAction)buttonLoadImageTouch:(UIButton *)sender {
     if (pickerImageView) {//have image, remove it
         [self animateRemovePickerImage];
-        
+        //re-set
         [self.calculatorViewController returnNumberToZero];
+        note = @"";
+        imagePrice = 0;
         
     }else{//create picker
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -138,8 +149,7 @@
         //以動畫方式顯示圖庫
         [self presentViewController:picker animated:YES completion:nil];
         
-        //clear price
-        [self.calculatorViewController returnNumberToZero];
+        
     }
     
      
@@ -162,10 +172,12 @@
     [self animationCaptureImage:image];
     
     //save to bao album
-    [baoController saveImageToAlbum:image byDate:[NSDate date] price:imagePrice];
+    [baoController saveImageToAlbum:image byDate:[NSDate date] price:imagePrice note:note];
     
     //clear price
     [self.calculatorViewController returnNumberToZero];
+    note = @"";
+    imagePrice = 0;
 }
 
 

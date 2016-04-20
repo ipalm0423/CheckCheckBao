@@ -132,10 +132,10 @@ static BaoController *shareBaoController = nil;
     return nil;
 }
 
--(void)saveImageToAlbum:(UIImage*)image byDate:(NSDate*)date price:(float)price{
+-(void)saveImageToAlbum:(UIImage*)image byDate:(NSDate*)date price:(float)price note:(NSString *)note{
     
     //create new bao image
-    BaoImage *baoImage = [[BaoImage alloc] initByDate:date name:@"" price:price imageURL:nil note:@""];
+    BaoImage *baoImage = [[BaoImage alloc] initByDate:date name:@"" price:price imageURL:nil note:note];
     
     //save to album
     BaoAlbum *baoAlbum = [self findBaoAlbumFromAlbumsByDate:date];
@@ -154,6 +154,27 @@ static BaoController *shareBaoController = nil;
     
     //save to asset, and save url to baoImage
     [self saveImageToAssetCollection:image forBaoImage:baoImage];
+    [self saveAllChange];
+}
+
+-(void)saveImageToAlbumByAssetURL:(NSURL*)assetURL date:(NSDate*)date price:(float)price note:(NSString*)note{
+    //create new bao image
+    BaoImage *baoImage = [[BaoImage alloc] initByDate:date name:@"" price:price imageURL:assetURL note:note];
+    
+    //save to album
+    BaoAlbum *baoAlbum = [self findBaoAlbumFromAlbumsByDate:date];
+    if (baoAlbum != nil) {
+        NSLog(@"find old album");
+        [baoAlbum addNewBaoImage:baoImage];
+        
+    }else {
+        //can't find album, create new
+        NSLog(@"create new album");
+        BaoAlbum *newBaoAlbum = [[BaoAlbum alloc] initByDate:date];
+        [newBaoAlbum addNewBaoImage:baoImage];
+        [self.baoAlbums addObject:newBaoAlbum];
+    }
+    
     [self saveAllChange];
 }
 
